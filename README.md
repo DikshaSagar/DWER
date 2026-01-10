@@ -1,3 +1,4 @@
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DikshaSagar/DWER/HEAD)
 # Western Australia Climate Analysis
 
 This repository provides a set of reusable Jupyter notebooks for accessing,
