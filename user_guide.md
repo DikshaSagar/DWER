@@ -80,6 +80,7 @@ Climate summaries
 Interactive exploration
 
 **6. Functional description of notebooks**
+
 6.1 Overview
 
 Purpose:
