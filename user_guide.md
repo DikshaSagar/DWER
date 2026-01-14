@@ -2,7 +2,7 @@
 
 Climate Data Analysis Toolkit
 -------------------------------------------------------------------------------------------------------------------
-1. Overview
+**1. Overview**
 
 This toolkit provides a structured workflow for accessing, processing, analysing, and visualising regional climate model data using Jupyter Notebooks.
 
@@ -18,7 +18,7 @@ Interactive exploration of climate variables
 
 The toolkit is modular. Each notebook performs a defined function and can be used independently.
 
-2. Access modes
+**2. Access modes**
 
 The toolkit can be used in two ways:
 
@@ -31,7 +31,7 @@ Suitable for demonstration, exploration, and lightweight analysis.
 
 Recommended for extended workflows, large datasets, and computationally intensive processing.
 
-3. Getting started with Binder
+**3. Getting started with Binder**
 
 Open the GitHub repository containing this toolkit.
 
@@ -45,7 +45,7 @@ Select any notebook from the file panel and execute cells using Shift + Enter.
 
 Binder sessions are temporary. Any changes should be downloaded or committed back to the repository before closing the session.
 
-4. Local setup (optional)
+**4. Local setup (optional)**
 4.1 Clone the repository
 git clone <repository-url>
 cd <repository-folder>
@@ -58,7 +58,7 @@ pip install -r requirements.txt
 4.3 Launch Jupyter
 jupyter lab
 
-5. Toolkit structure
+**5. Toolkit structure**
 
 The notebooks are organised by function, not by dependency.
 Each notebook addresses a specific stage of the workflow.
@@ -79,7 +79,7 @@ Climate summaries
 
 Interactive exploration
 
-6. Functional description of notebooks
+**6. Functional description of notebooks**
 6.1 Overview
 
 Purpose:
@@ -171,7 +171,7 @@ Rapid visual feedback
 
 Prototype dashboard-style interaction within Jupyter
 
-7. Typical operational workflows
+**7. Typical operational workflows**
 Workflow A — Rapid visual inspection
 
 Open Data access
@@ -200,7 +200,7 @@ Select variables and time range
 
 Explore patterns dynamically
 
-8. Use of Binder
+**8. Use of Binder**
 Suitable use cases
 
 Demonstrating workflows
@@ -221,7 +221,7 @@ Sessions are temporary
 
 For computationally intensive tasks, local execution is recommended.
 
-9. Data handling and persistence
+**9. Data handling and persistence**
 
 Binder environments do not retain data after shutdown.
 Any changes, outputs, or figures should be:
@@ -230,7 +230,7 @@ Downloaded locally
 
 Or committed to the GitHub repository
 
-10. Best-practice guidance
+**10. Best-practice guidance**
 
 Inspect datasets before analysis
 
@@ -250,7 +250,7 @@ time coverage
 
 Record parameter choices for reproducibility
 
-11. Common operational issues
+**11. Common operational issues**
 Blank maps
 
 Cause: Coordinate mismatch or projection issue
@@ -277,7 +277,7 @@ Cause: Widget extensions not initialised
 Resolution:
 Restart the kernel and re-run the notebook.
 
-12. Intended use
+**12. Intended use**
 
 This toolkit supports:
 
@@ -297,7 +297,7 @@ Transparent — workflows are visible and inspectable
 
 Extendable — new datasets, regions, and methods can be added with minimal restructuring
 
-13. Closing statement
+**13. Closing statement**
 
 This toolkit provides a structured, reproducible approach to regional climate data analysis in a Jupyter-based environment.
 
