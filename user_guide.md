@@ -173,6 +173,7 @@ Rapid visual feedback
 Prototype dashboard-style interaction within Jupyter
 
 **7. Typical operational workflows**
+
 Workflow A — Rapid visual inspection
 
 Open Data access
@@ -202,6 +203,7 @@ Select variables and time range
 Explore patterns dynamically
 
 **8. Use of Binder**
+
 Suitable use cases
 
 Demonstrating workflows
@@ -252,6 +254,7 @@ time coverage
 Record parameter choices for reproducibility
 
 **11. Common operational issues**
+
 Blank maps
 
 Cause: Coordinate mismatch or projection issue
