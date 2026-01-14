@@ -1,0 +1,1052 @@
+<?xml version="1.0" encoding="UTF-8"?><MD_Metadata xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:xalan="http://xml.apache.org/xalan" xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.isotc211.org/2005/gmd">
+    <fileIdentifier>
+        <gco:CharacterString>1C6A9FE7-2A34-469A-9A89-D660A8A678C5</gco:CharacterString>
+    </fileIdentifier>
+    <language>
+        <LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng" codeSpace="ISO639-2">eng</LanguageCode>
+    </language>
+    <characterSet>
+        <MD_CharacterSetCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8" codeSpace="ISOTC211/19115">utf8</MD_CharacterSetCode>
+    </characterSet>
+    <hierarchyLevel>
+        <MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset" codeSpace="ISOTC211/19115">dataset</MD_ScopeCode>
+    </hierarchyLevel>
+    <hierarchyLevelName>
+        <gco:CharacterString>dataset</gco:CharacterString>
+    </hierarchyLevelName>
+    <contact>
+        <CI_ResponsibleParty>
+            <organisationName>
+                <gco:CharacterString>Australian Government Department of Climate Change, Energy, the Environment and Water</gco:CharacterString>
+            </organisationName>
+            <positionName>
+                <gco:CharacterString>NRM Programs Data Manager</gco:CharacterString>
+            </positionName>
+            <contactInfo>
+                <CI_Contact>
+                    <phone>
+                        <CI_Telephone>
+                            <voice>
+                                <gco:CharacterString>02 6274 1111</gco:CharacterString>
+                            </voice>
+                            <facsimile>
+                                <gco:CharacterString>02 6274 1666</gco:CharacterString>
+                            </facsimile>
+                        </CI_Telephone>
+                    </phone>
+                    <address>
+                        <CI_Address>
+                            <deliveryPoint>
+                                <gco:CharacterString>GPO Box 858</gco:CharacterString>
+                            </deliveryPoint>
+                            <city>
+                                <gco:CharacterString>Canberra</gco:CharacterString>
+                            </city>
+                            <administrativeArea>
+                                <gco:CharacterString>ACT</gco:CharacterString>
+                            </administrativeArea>
+                            <postalCode>
+                                <gco:CharacterString>2601</gco:CharacterString>
+                            </postalCode>
+                            <country>
+                                <Country codeList="http://www.iso.org/iso/country_codes/iso_3166_code_lists.htm" codeListValue="AU" codeSpace="ISO3166-1">AU</Country>
+                            </country>
+                            <electronicMailAddress>
+                                <gco:CharacterString>geospatial@awe.gov.au</gco:CharacterString>
+                            </electronicMailAddress>
+                        </CI_Address>
+                    </address>
+                    <onlineResource>
+                        <CI_OnlineResource>
+                            <linkage>
+                                <URL>https://www.dcceew.gov.au</URL>
+                            </linkage>
+                        </CI_OnlineResource>
+                    </onlineResource>
+                </CI_Contact>
+            </contactInfo>
+            <role>
+                <CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact" codeSpace="ISOTC211/19115">pointOfContact</CI_RoleCode>
+            </role>
+        </CI_ResponsibleParty>
+    </contact>
+    <dateStamp>
+        <gco:Date>2023-05-17</gco:Date>
+    </dateStamp>
+    <metadataStandardName>
+        <gco:CharacterString>ISO 19139 Geographic Information - Metadata - Implementation Specification</gco:CharacterString>
+    </metadataStandardName>
+    <metadataStandardVersion>
+        <gco:CharacterString>2007</gco:CharacterString>
+    </metadataStandardVersion>
+    <dataSetURI>
+        <gco:CharacterString>withheld</gco:CharacterString>
+    </dataSetURI>
+    <spatialRepresentationInfo>
+        <MD_VectorSpatialRepresentation>
+            <topologyLevel>
+                <MD_TopologyLevelCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_TopologyLevelCode" codeListValue="geometryOnly" codeSpace="ISOTC211/19115">geometryOnly</MD_TopologyLevelCode>
+            </topologyLevel>
+            <geometricObjects>
+                <MD_GeometricObjects>
+                    <geometricObjectType>
+                        <MD_GeometricObjectTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_GeometricObjectTypeCode" codeListValue="composite" codeSpace="ISOTC211/19115">composite</MD_GeometricObjectTypeCode>
+                    </geometricObjectType>
+                </MD_GeometricObjects>
+            </geometricObjects>
+        </MD_VectorSpatialRepresentation>
+    </spatialRepresentationInfo>
+    <referenceSystemInfo>
+        <MD_ReferenceSystem>
+            <referenceSystemIdentifier>
+                <RS_Identifier>
+                    <code>
+                        <gco:CharacterString>4283</gco:CharacterString>
+                    </code>
+                    <codeSpace>
+                        <gco:CharacterString>EPSG</gco:CharacterString>
+                    </codeSpace>
+                    <version>
+                        <gco:CharacterString>6.5(3.0.1)</gco:CharacterString>
+                    </version>
+                </RS_Identifier>
+            </referenceSystemIdentifier>
+        </MD_ReferenceSystem>
+    </referenceSystemInfo>
+    <identificationInfo>
+        <MD_DataIdentification>
+            <citation>
+                <CI_Citation>
+                    <title>
+                        <gco:CharacterString>Natural Resource Management (NRM) Regions (2023)</gco:CharacterString>
+                    </title>
+                    <date>
+                        <CI_Date>
+                            <date>
+                                <gco:Date>2017-08-18</gco:Date>
+                            </date>
+                            <dateType>
+                                <CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation" codeSpace="ISOTC211/19115">creation</CI_DateTypeCode>
+                            </dateType>
+                        </CI_Date>
+                    </date>
+                    <date>
+                        <CI_Date>
+                            <date>
+                                <gco:Date>2020-10-13</gco:Date>
+                            </date>
+                            <dateType>
+                                <CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="revision" codeSpace="ISOTC211/19115">revision</CI_DateTypeCode>
+                            </dateType>
+                        </CI_Date>
+                    </date>
+                    <identifier>
+                        <MD_Identifier>
+                            <code>
+                                <gco:CharacterString>1C6A9FE7-2A34-469A-9A89-D660A8A678C5</gco:CharacterString>
+                            </code>
+                        </MD_Identifier>
+                    </identifier>
+                    <citedResponsibleParty>
+                        <CI_ResponsibleParty>
+                            <organisationName>
+                                <gco:CharacterString>Australian Government Department of Climate Change, Energy, the Environment and Water</gco:CharacterString>
+                            </organisationName>
+                            <positionName>
+                                <gco:CharacterString>NRM Programs Data Manager</gco:CharacterString>
+                            </positionName>
+                            <contactInfo>
+                                <CI_Contact>
+                                    <phone>
+                                        <CI_Telephone>
+                                            <voice>
+                                                <gco:CharacterString>02 6274 1111</gco:CharacterString>
+                                            </voice>
+                                            <facsimile>
+                                                <gco:CharacterString>02 6274 1666</gco:CharacterString>
+                                            </facsimile>
+                                        </CI_Telephone>
+                                    </phone>
+                                    <address>
+                                        <CI_Address>
+                                            <deliveryPoint>
+                                                <gco:CharacterString>GPO Box 858</gco:CharacterString>
+                                            </deliveryPoint>
+                                            <city>
+                                                <gco:CharacterString>Canberra</gco:CharacterString>
+                                            </city>
+                                            <administrativeArea>
+                                                <gco:CharacterString>ACT</gco:CharacterString>
+                                            </administrativeArea>
+                                            <postalCode>
+                                                <gco:CharacterString>2601</gco:CharacterString>
+                                            </postalCode>
+                                            <country>
+                                                <Country codeList="http://www.iso.org/iso/country_codes/iso_3166_code_lists.htm" codeListValue="AU" codeSpace="ISO3166-1">AU</Country>
+                                            </country>
+                                            <electronicMailAddress>
+                                                <gco:CharacterString>geospatial@awe.gov.au</gco:CharacterString>
+                                            </electronicMailAddress>
+                                        </CI_Address>
+                                    </address>
+                                    <onlineResource>
+                                        <CI_OnlineResource>
+                                            <linkage>
+                                                <URL>https://www.dcceew.gov.au</URL>
+                                            </linkage>
+                                        </CI_OnlineResource>
+                                    </onlineResource>
+                                </CI_Contact>
+                            </contactInfo>
+                            <role>
+                                <CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian" codeSpace="ISOTC211/19115">custodian</CI_RoleCode>
+                            </role>
+                        </CI_ResponsibleParty>
+                    </citedResponsibleParty>
+                    <citedResponsibleParty>
+                        <CI_ResponsibleParty>
+                            <organisationName>
+                                <gco:CharacterString>Australian Government Department of Climate Change, Energy, the Environment and Water</gco:CharacterString>
+                            </organisationName>
+                            <positionName>
+                                <gco:CharacterString>Metadata Publisher</gco:CharacterString>
+                            </positionName>
+                            <contactInfo>
+                                <CI_Contact>
+                                    <phone>
+                                        <CI_Telephone>
+                                            <voice>
+                                                <gco:CharacterString>(02) 6274 1111</gco:CharacterString>
+                                            </voice>
+                                            <facsimile>
+                                                <gco:CharacterString>(02) 6274 1333</gco:CharacterString>
+                                            </facsimile>
+                                        </CI_Telephone>
+                                    </phone>
+                                    <address>
+                                        <CI_Address>
+                                            <deliveryPoint>
+                                                <gco:CharacterString>GPO Box 858</gco:CharacterString>
+                                            </deliveryPoint>
+                                            <city>
+                                                <gco:CharacterString>CANBERRA</gco:CharacterString>
+                                            </city>
+                                            <administrativeArea>
+                                                <gco:CharacterString>ACT</gco:CharacterString>
+                                            </administrativeArea>
+                                            <postalCode>
+                                                <gco:CharacterString>2601</gco:CharacterString>
+                                            </postalCode>
+                                            <country>
+                                                <Country codeList="http://www.iso.org/iso/country_codes/iso_3166_code_lists.htm" codeListValue="AU" codeSpace="ISO3166-1">AU</Country>
+                                            </country>
+                                            <electronicMailAddress>
+                                                <gco:CharacterString>geospatial@awe.gov.au</gco:CharacterString>
+                                            </electronicMailAddress>
+                                        </CI_Address>
+                                    </address>
+                                    <onlineResource>
+                                        <CI_OnlineResource>
+                                            <linkage>
+                                                <URL>https://www.dcceew.gov.au</URL>
+                                            </linkage>
+                                        </CI_OnlineResource>
+                                    </onlineResource>
+                                </CI_Contact>
+                            </contactInfo>
+                            <role>
+                                <CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="publisher" codeSpace="ISOTC211/19115">publisher</CI_RoleCode>
+                            </role>
+                        </CI_ResponsibleParty>
+                    </citedResponsibleParty>
+                    <presentationForm>
+                        <CI_PresentationFormCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_PresentationFormCode" codeListValue="mapDigital" codeSpace="ISOTC211/19115">mapDigital</CI_PresentationFormCode>
+                    </presentationForm>
+                    <otherCitationDetails>
+                        <gco:CharacterString>When using this data in visual material (e.g. maps, web sites) the CC By licence requires citation of  this data in an acknowledgement as "Natural Resource Management Regions (NRM) 2020, Commonwealth of Australia 2022."
+
+The use of this data for the development of another data product should include the following statement within metadata of the new product that is embedded within and delivered with it: "This data has been developed using the Natural Resource Management Regions (NRM) 2022, Commonwealth of Australia 2022."</gco:CharacterString>
+                    </otherCitationDetails>
+                </CI_Citation>
+            </citation>
+            <abstract>
+                <gco:CharacterString>The Natural Resource Management (NRM) Regions dataset is maintained for the purpose of authoritative reporting on the Australian Government's NRM investments. The dataset is designed to cover all Australian territory where Australian Government funded NRM projects might take place and includes major islands, external territories, and state and coastal waters in addition to the NRM regional boundaries. Whilst the boundaries of NRM Regions are defined by legislation in some states and territories, this dataset should not be used to represent legal boundaries in any way. It is an administrative dataset developed for the purpose of reporting and public information. It should be noted that from time to time the states and/or territories may revise their regional boundaries in accordance with local needs and therefore alterations to either the attribution or boundaries of the data may occur in the future.Current VersionAs part of Phase Two of the National Landcare Program (NLP) the Australian Government's natural resource management (NRM) investments will be delivered with Regional Delivery Partners (RDPs) across 56 management units. These replace the previous NLP management units used in NLP Phase One. They are officially referred to as Regional Delivery Partners for Environmental Protection, Sustainable Agriculture and Natural Resource Management Services 2022. The spatial data for RDP management units are derived from the NRM Regions spatial data, as described below.The 2022 dataset defines NRM Region boundaries and Regional Delivery Partner management units in a single dataset, thereby overcoming version control issues with the previous approach of publishing separate data layers for each.To handle a variety of required derivations, a fundamental set of 64 NRM Region map objects was first defined. This can then be compiled using various queries on non-spatial attributes. For example, as set out below, we can define 56 continental NRM Regions and 8 off-shore NRM regions, or island sub components of NRM regions located on the continent. Across these a total of 56 RDP management units can also be defined.To identify those NRM regions located on the Australian continent, a "continental" field (yes/no) has been included, for the first time, in the 2022 dataset. It allows differentiation between off-shore and continental regions, and accommodates that some NRM regions (ie one each in NSW and Tasmania) have both a continental part (eg North Coast, NSW) and an off-shore part (eg North Coast - Lord Howe Island).In accordance with the Australian Government’s Remote Indigenous Procurement Policy (RIPP) and its application to NRM regional investment, we have identified 16 RDP management units with more than 50% overlap with RIPP areas, as defined by the Australian Bureau of Statistics. A RIPP field (yes/no) is included in the attribute table. The data structure allows either NRM Regions, RDP management units and those RDPs overlapping RIPPs to be mapped from the single dataset using the NRM_REGION, RDP_NAME and RIPP fields respectively. NRM_ID, RDP_ID and RIPP fields may also be used.The 2022 version updates the previous version (2020). In total, the 2022 version dataset comprises 64 NRM map objects for 62 NRM regions. These comprise 56 mainland regions (of which two have associated islands as separate map objects), the Torres Strait NRM region, and a further five external territories. Four of these external territories are islands and one is classified as Marine NRM. Using the RDP_NAME or RDP_ID fields to map Regional Delivery Partner management units will result in 56 RDP management unitsThese comprise: 54 mainland RDP management units (two of which have island components); Torres Strait; and a "Marine NRM" management unit. The Marine NRM unit combines Australia's Territorial Sea (from 3 nautical miles to 12 nautical miles) and Australia's Exclusive Economic Zone (to 200 nautical miles) as well as Ashmore and Cartier Islands, Christmas Island, Cocos Keeling Islands and Heard and McDonald Islands. It excludes coastal waters (to 3 nautical miles) which are part of the terrestrial RDP management units. It also excludes the Australian Antarctic Territory and Norfolk Island.The 2022 version was derived from the former NRM regions series (latest version was 2020), originally established in 2006 as the "Natural Heritage Trust II (NHT2) Region Boundaries" dataset. Changes to the 2020 version in creating the 2022 version include the following.Natural Resource Management Regions-       'Adelaide and Mount Lofty Ranges' NRM_Region split into 'Green Adelaide' and 'Hills ad Fleurieu'-        Added two new NRM_IDs (4011 for Green Adelaide and 4012 for Hills ad Fleurieu)Regional Delivery Partner management units-       Changed 'National Landcare Program Management Units' to 'Regional Delivery Partners for Environmental Protection, Sustainable Agriculture and Natural Resource Management Services' -      'Adelaide and Mount Lofty Ranges' split into 'Green Adelaide' and 'Hills ad Fleurieu'-       Added two new RDP_IDs (4011 for Green Adelaide and 4012 for Hills ad Fleurieu)-      'Torres Strait', 'Green Adelaide' and 'Marine NRM' added * to match note *management unit covered through other financial arrangements-      'South West Queensland', 'Maranoa Balonne and Border Rivers' and 'Condamine' combined into 'Southern Queensland' with light grey dotted line to denote NRM borders.-       Added the following fields to differentiate RDPs from NRMs-       -RDP_ID-       -RDP_NAME-       -RDP_DESC (Previously AREA_DESC)-       -RIPP-      'Torres Strait' and 'Green Adelaide' symbology changed to grey hatched filling. -       The management units are coloured based on their overlap with the remote Indigenous Procurement Policy area (RIPP).-       Remote management units are orange – to be incl. the management unit needed to have more than 50% overlap with the RIPP. -       Non-remote management units are green-      *Management units covered through other financial arrangements management units are grey with hatchingPrevious VersionsThe 2020 version NLP Management Units dataset contained 58 separate map objects. These comprised: 56 mainland Management Units; a separate object for Lord Howe Island (part of North Coast, NSW Management Unit); and a "Marine NRM" Management Unit which combined Australia's Territorial Sea (from 3 nautical miles to 12 nautical miles) and Australia's Exclusive Economic Zone (to 200 nautical miles). It excluded coastal waters (to 3 nautical miles) which are part of the terrestrial NLP Management Units. It also excluded Ashmore &amp;amp; Cartier Islands, Australian Antarctic Territory, Christmas Island, Cocos &amp;amp; Keeling Islands, Macquarie Island, Heard &amp;amp; MacDonald Islands and Norfolk Island, and those parts of Australia's Territorial Sea and Exclusive Economic Zone that surround these locations.The 2020 version was derived from the former NRM regions series, originally established in 2006 as the "Natural Heritage Trust II (NHT2) Region Boundaries" dataset. The 2017 version, from which the 2020 version was developed, was itself an update to 2016 v2 in which changes were made to boundaries of six of Western Australia’s seven NRM regions, and region names in Qld, Tas and WA. AttributesThe principle data fields in the 2022 version dataset are:-STATE -NRM_REGION-NRM_ID-NRM_DESC (Previously AREA_DESC)-RDP_ID-RDP_NAME-RDP_DESC (Previously AREA_DESC)-RIPP-CONTINENTALNRM_ID and NRM_REGION Names grouped by state/territory are as follows:New South Wales (11 regions + 1 extra map object for Lord Howe Island)1010 Central Tablelands1020 Central West1030 Greater Sydney1040 Hunter1050 Murray1060 North Coast1061 North Coast - Lord Howe Island1070 North West NSW1080 Northern Tablelands1090 Riverina1100 South East NSW1110 WesternVictoria (10 regions)2010 Corangamite2020 East Gippsland2030 Glenelg Hopkins2040 Goulburn Broken2050 Mallee2060 North Central2070 North East2080 Port Phillip and Western Port2090 West Gippsland2100 WimmeraQueensland (15 regions) 3010 Burnett Mary3020 Cape York3030 Condamine3040 Co-operative Management Area3050 Desert Channels3060 Fitzroy3070 Burdekin3080 Northern Gulf3090 Maranoa Balonne and Border Rivers3100 Mackay Whitsunday3110 South East Queensland3120 South West Queensland3130 Southern Gulf3140 Wet Tropics3150 Torres StraitSouth Australia (9 regions) 4011 Green Adelaide4012 Hills and Fleurieu4020 Alinytjara Wilurara4030 Eyre Peninsula4040 Kangaroo Island4050 Northern and Yorke4060 South Australian Arid Lands4070 South Australian Murray Darling Basin4080 Limestone CoastWestern Australia (7 regions)5010 Northern Agricultural Region5020 Peel-Harvey Region5030 Swan Region5040 Rangelands Region5050 South Coast Region5060 South West Region5070 Avon River BasinTasmania (3 regions + 1 extra map object for Macquarie Island)6010 North West NRM Region6020 North NRM Region6030 South NRM Region6031 South NRM Region - Macquarie IslandsNorthern Territory (1 region)7010 Northern TerritoryAustralian Capital Territory (1 region)8010 ACTExternal Territories (5 regions) 9010 Ashmore and Cartier Islands9020 Christmas Island9030 Cocos Keeling Islands9040 Heard and McDonald Islands9060 Marine NRM</gco:CharacterString>
+            </abstract>
+            <purpose>
+                <gco:CharacterString>NRM Region boundaries and those NRM Region boundaries making up Regional Delivery Partner management units (previously described as National Landcare Program management units (NLPMU). Of these RDP management units those that overlap Remote Indigenous Procurement Policy (RIPP) areas by more than 50% are also identified as remote RDPs.</gco:CharacterString>
+            </purpose>
+            <credit>
+                <gco:CharacterString>The NRM region boundaries (2006 base layer) are primarily based on data and information supplied by the relevant state and territory government agencies. Geoscience Australia's Australian Maritime Boundaries (2014) and Geodata Coast 100K (2004) data were also used in the development of this dataset. Local Land Service region boundaries were sourced from the NSW Government.</gco:CharacterString>
+            </credit>
+            <status>
+                <MD_ProgressCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ProgressCode" codeListValue="completed" codeSpace="ISOTC211/19115">completed</MD_ProgressCode>
+            </status>
+            <pointOfContact>
+                <CI_ResponsibleParty>
+                    <organisationName>
+                        <gco:CharacterString>Australian Government Department of Climate Change, Energy, the Environment and Water</gco:CharacterString>
+                    </organisationName>
+                    <positionName>
+                        <gco:CharacterString>NRM Programs Data Manager</gco:CharacterString>
+                    </positionName>
+                    <contactInfo>
+                        <CI_Contact>
+                            <phone>
+                                <CI_Telephone>
+                                    <voice>
+                                        <gco:CharacterString>02 6274 1111</gco:CharacterString>
+                                    </voice>
+                                    <facsimile>
+                                        <gco:CharacterString>02 6274 1666</gco:CharacterString>
+                                    </facsimile>
+                                </CI_Telephone>
+                            </phone>
+                            <address>
+                                <CI_Address>
+                                    <deliveryPoint>
+                                        <gco:CharacterString>GPO Box 858</gco:CharacterString>
+                                    </deliveryPoint>
+                                    <city>
+                                        <gco:CharacterString>Canberra</gco:CharacterString>
+                                    </city>
+                                    <administrativeArea>
+                                        <gco:CharacterString>ACT</gco:CharacterString>
+                                    </administrativeArea>
+                                    <postalCode>
+                                        <gco:CharacterString>2601</gco:CharacterString>
+                                    </postalCode>
+                                    <country>
+                                        <Country codeList="http://www.iso.org/iso/country_codes/iso_3166_code_lists.htm" codeListValue="AU" codeSpace="ISO3166-1">AU</Country>
+                                    </country>
+                                    <electronicMailAddress>
+                                        <gco:CharacterString>geospatial@awe.gov.au</gco:CharacterString>
+                                    </electronicMailAddress>
+                                </CI_Address>
+                            </address>
+                            <onlineResource>
+                                <CI_OnlineResource>
+                                    <linkage>
+                                        <URL>https://www.dcceew.gov.au</URL>
+                                    </linkage>
+                                </CI_OnlineResource>
+                            </onlineResource>
+                        </CI_Contact>
+                    </contactInfo>
+                    <role>
+                        <CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact" codeSpace="ISOTC211/19115">pointOfContact</CI_RoleCode>
+                    </role>
+                </CI_ResponsibleParty>
+            </pointOfContact>
+            <pointOfContact>
+                <CI_ResponsibleParty>
+                    <organisationName>
+                        <gco:CharacterString>Australian Government Department of Climate Change, Energy, the Environment and Water</gco:CharacterString>
+                    </organisationName>
+                    <positionName>
+                        <gco:CharacterString>NRM Programs Data Manager</gco:CharacterString>
+                    </positionName>
+                    <contactInfo>
+                        <CI_Contact>
+                            <phone>
+                                <CI_Telephone>
+                                    <voice>
+                                        <gco:CharacterString>02 6274 1111</gco:CharacterString>
+                                    </voice>
+                                    <facsimile>
+                                        <gco:CharacterString>02 6274 1666</gco:CharacterString>
+                                    </facsimile>
+                                </CI_Telephone>
+                            </phone>
+                            <address>
+                                <CI_Address>
+                                    <deliveryPoint>
+                                        <gco:CharacterString>GPO Box 858</gco:CharacterString>
+                                    </deliveryPoint>
+                                    <city>
+                                        <gco:CharacterString>Canberra</gco:CharacterString>
+                                    </city>
+                                    <administrativeArea>
+                                        <gco:CharacterString>ACT</gco:CharacterString>
+                                    </administrativeArea>
+                                    <postalCode>
+                                        <gco:CharacterString>2601</gco:CharacterString>
+                                    </postalCode>
+                                    <country>
+                                        <Country codeList="http://www.iso.org/iso/country_codes/iso_3166_code_lists.htm" codeListValue="AU" codeSpace="ISO3166-1">AU</Country>
+                                    </country>
+                                    <electronicMailAddress>
+                                        <gco:CharacterString>geospatial@awe.gov.au</gco:CharacterString>
+                                    </electronicMailAddress>
+                                </CI_Address>
+                            </address>
+                            <onlineResource>
+                                <CI_OnlineResource>
+                                    <linkage>
+                                        <URL>https://www.dcceew.gov.au</URL>
+                                    </linkage>
+                                </CI_OnlineResource>
+                            </onlineResource>
+                        </CI_Contact>
+                    </contactInfo>
+                    <role>
+                        <CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian" codeSpace="ISOTC211/19115">custodian</CI_RoleCode>
+                    </role>
+                </CI_ResponsibleParty>
+            </pointOfContact>
+            <pointOfContact>
+                <CI_ResponsibleParty>
+                    <organisationName>
+                        <gco:CharacterString>Australian Government Department of Climate Change, Energy, the Environment and Water</gco:CharacterString>
+                    </organisationName>
+                    <positionName>
+                        <gco:CharacterString>Assistant Secretary, Biodiversity Conservation Division</gco:CharacterString>
+                    </positionName>
+                    <contactInfo>
+                        <CI_Contact>
+                            <phone>
+                                <CI_Telephone>
+                                    <voice>
+                                        <gco:CharacterString>02 6274 1111</gco:CharacterString>
+                                    </voice>
+                                </CI_Telephone>
+                            </phone>
+                            <address>
+                                <CI_Address>
+                                    <deliveryPoint>
+                                        <gco:CharacterString>GPO Box 858</gco:CharacterString>
+                                    </deliveryPoint>
+                                    <city>
+                                        <gco:CharacterString>Canberra</gco:CharacterString>
+                                    </city>
+                                    <administrativeArea>
+                                        <gco:CharacterString>ACT</gco:CharacterString>
+                                    </administrativeArea>
+                                    <postalCode>
+                                        <gco:CharacterString>2601</gco:CharacterString>
+                                    </postalCode>
+                                    <country>
+                                        <Country codeList="http://www.iso.org/iso/country_codes/iso_3166_code_lists.htm" codeListValue="AU" codeSpace="ISO3166-1">AU</Country>
+                                    </country>
+                                </CI_Address>
+                            </address>
+                            <onlineResource>
+                                <CI_OnlineResource>
+                                    <linkage>
+                                        <URL>https://www.dcceew.gov.au</URL>
+                                    </linkage>
+                                </CI_OnlineResource>
+                            </onlineResource>
+                        </CI_Contact>
+                    </contactInfo>
+                    <role>
+                        <CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="owner" codeSpace="ISOTC211/19115">owner</CI_RoleCode>
+                    </role>
+                </CI_ResponsibleParty>
+            </pointOfContact>
+            <resourceMaintenance>
+                <MD_MaintenanceInformation>
+                    <maintenanceAndUpdateFrequency>
+                        <MD_MaintenanceFrequencyCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_MaintenanceFrequencyCode" codeListValue="asNeeded" codeSpace="ISOTC211/19115">asNeeded</MD_MaintenanceFrequencyCode>
+                    </maintenanceAndUpdateFrequency>
+                </MD_MaintenanceInformation>
+            </resourceMaintenance>
+            <graphicOverview>
+                <MD_BrowseGraphic>
+                    <fileName>
+                        <gco:CharacterString>http://intspat01.ris.environment.gov.au/metadata_int/images/122fd267-e687-4465-9f2a-229953faf7d0.jpg</gco:CharacterString>
+                    </fileName>
+                </MD_BrowseGraphic>
+            </graphicOverview>
+            <resourceFormat>
+                <MD_Format>
+                    <name>
+                        <gco:CharacterString>Shapefile</gco:CharacterString>
+                    </name>
+                    <version>
+                        <gco:CharacterString>1</gco:CharacterString>
+                    </version>
+                </MD_Format>
+            </resourceFormat>
+            <descriptiveKeywords>
+                <MD_Keywords>
+                    <keyword>
+                        <gco:CharacterString>BOUNDARIES Administrative_Conservation</gco:CharacterString>
+                    </keyword>
+                    <keyword>
+                        <gco:CharacterString>BOUNDARIES Administrative_Management</gco:CharacterString>
+                    </keyword>
+                    <type>
+                        <MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme" codeSpace="ISOTC211/19115">theme</MD_KeywordTypeCode>
+                    </type>
+                    <thesaurusName>
+                        <CI_Citation>
+                            <title>
+                                <gco:CharacterString>ANZLIC Search Words</gco:CharacterString>
+                            </title>
+                            <date>
+                                <CI_Date>
+                                    <date>
+                                        <gco:Date>2008-05-15</gco:Date>
+                                    </date>
+                                    <dateType>
+                                        <CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="revision" codeSpace="ISOTC211/19115">revision</CI_DateTypeCode>
+                                    </dateType>
+                                </CI_Date>
+                            </date>
+                            <edition>
+                                <gco:CharacterString>Version 2.1</gco:CharacterString>
+                            </edition>
+                            <editionDate>
+                                <gco:Date>2008-05-15</gco:Date>
+                            </editionDate>
+                        </CI_Citation>
+                    </thesaurusName>
+                </MD_Keywords>
+            </descriptiveKeywords>
+            <descriptiveKeywords>
+                <MD_Keywords>
+                    <keyword>
+                        <gco:CharacterString>Downloadable Data</gco:CharacterString>
+                    </keyword>
+                    <thesaurusName uuidref="723f6998-058e-11dc-8314-0800200c9a66"/>
+                </MD_Keywords>
+            </descriptiveKeywords>
+            <resourceConstraints>
+                <MD_Constraints>
+                    <useLimitation>
+                        <gco:CharacterString>Licence:Attribution 3.0 Australia (CC BY 3.0 AU)This data has been licensed under the Creative Commons Attribution 3.0 Australia Licence. More information can be found at: https://creativecommons.org/licenses/by/3.0/au/deed.enThis dataset is available under the CC BY data licensing model and users are required to acknowledge the Australian Government as the source of the data in any of their uses.Copyright:© Commonwealth of Australia (Department of Climate Change, Energy, the Environment and Water) 2023Data Citation:Natural Resource Management Regions (NRM) 2023, Commonwealth of Australia 2023The use of this data for the development of another data product should include the following statement within metadata of the new product that is embedded within and delivered with it: &amp;quot;This data has been developed using the Natural Resource Management Regions (NRM) 2015, Commonwealth of Australia 2023.&amp;quot;Use Constraints:None specified.Disclaimer:The user waives and releases the Commonwealth of Australia to the full extent permitted by law from all liability for loss or damage arising from the use of, or reliance on, material or information made available through the system, whether caused by negligence on the part of the Commonwealth of Australia or its agents. In no event shall the Commonwealth of Australia be liable for any incidental or consequential damages resulting from the use of or reliance on the material.Information provided in publications by the Australian Government are considered to be true and correct at the time of publication. Changes in circumstances after time of publication may impact on the accuracy of this information and the Australian Government gives no assurance as to the accuracy of any information or advice contained.</gco:CharacterString>
+                    </useLimitation>
+                </MD_Constraints>
+            </resourceConstraints>
+            <resourceConstraints>
+                <MD_LegalConstraints>
+                    <accessConstraints>
+                        <MD_RestrictionCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_RestrictionCode" codeListValue="license" codeSpace="ISOTC211/19115">license</MD_RestrictionCode>
+                    </accessConstraints>
+                    <useConstraints>
+                        <MD_RestrictionCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_RestrictionCode" codeListValue="license" codeSpace="ISOTC211/19115">license</MD_RestrictionCode>
+                    </useConstraints>
+                    <otherConstraints>
+                        <gco:CharacterString>This data has been licensed under the Creative Commons Attribution 4.0 International Licence. More information can be found at http://creativecommons.org.au/learn/licences.</gco:CharacterString>
+                    </otherConstraints>
+                </MD_LegalConstraints>
+            </resourceConstraints>
+            <resourceConstraints>
+                <MD_LegalConstraints>
+                    <accessConstraints>
+                        <MD_RestrictionCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_RestrictionCode" codeListValue="license" codeSpace="ISOTC211/19115">license</MD_RestrictionCode>
+                    </accessConstraints>
+                    <useConstraints>
+                        <MD_RestrictionCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_RestrictionCode" codeListValue="license" codeSpace="ISOTC211/19115">license</MD_RestrictionCode>
+                    </useConstraints>
+                    <otherConstraints>
+                        <gco:CharacterString>CC BY</gco:CharacterString>
+                    </otherConstraints>
+                </MD_LegalConstraints>
+            </resourceConstraints>
+            <resourceConstraints>
+                <MD_LegalConstraints>
+                    <accessConstraints>
+                        <MD_RestrictionCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_RestrictionCode" codeListValue="copyright" codeSpace="ISOTC211/19115">copyright</MD_RestrictionCode>
+                    </accessConstraints>
+                    <otherConstraints>
+                        <gco:CharacterString>© Commonwealth of Australia (Department of Climate Change, Energy, the Environment and Water) 2022</gco:CharacterString>
+                    </otherConstraints>
+                </MD_LegalConstraints>
+            </resourceConstraints>
+            <spatialRepresentationType>
+                <MD_SpatialRepresentationTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_SpatialRepresentationTypeCode" codeListValue="vector" codeSpace="ISOTC211/19115">vector</MD_SpatialRepresentationTypeCode>
+            </spatialRepresentationType>
+            <spatialResolution>
+                <MD_Resolution>
+                    <equivalentScale>
+                        <MD_RepresentativeFraction>
+                            <denominator>
+                                <gco:Integer>250000</gco:Integer>
+                            </denominator>
+                        </MD_RepresentativeFraction>
+                    </equivalentScale>
+                </MD_Resolution>
+            </spatialResolution>
+            <language>
+                <LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng" codeSpace="ISO639-2">eng</LanguageCode>
+            </language>
+            <characterSet>
+                <MD_CharacterSetCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8" codeSpace="ISOTC211/19115">utf8</MD_CharacterSetCode>
+            </characterSet>
+            <topicCategory>
+                <MD_TopicCategoryCode>boundaries</MD_TopicCategoryCode>
+            </topicCategory>
+            <environmentDescription>
+                <gco:CharacterString>Esri ArcGIS 12.8.3.29751</gco:CharacterString>
+            </environmentDescription>
+            <extent>
+                <EX_Extent>
+                    <geographicElement>
+                        <EX_GeographicBoundingBox>
+                            <extentTypeCode>
+                                <gco:Boolean>true</gco:Boolean>
+                            </extentTypeCode>
+                            <westBoundLongitude>
+                                <gco:Decimal>72.246195</gco:Decimal>
+                            </westBoundLongitude>
+                            <eastBoundLongitude>
+                                <gco:Decimal>168.226179</gco:Decimal>
+                            </eastBoundLongitude>
+                            <southBoundLatitude>
+                                <gco:Decimal>-55.173104</gco:Decimal>
+                            </southBoundLatitude>
+                            <northBoundLatitude>
+                                <gco:Decimal>-9.187947</gco:Decimal>
+                            </northBoundLatitude>
+                        </EX_GeographicBoundingBox>
+                    </geographicElement>
+                </EX_Extent>
+            </extent>
+            <extent>
+                <EX_Extent>
+                    <geographicElement>
+                        <EX_GeographicBoundingBox>
+                            <extentTypeCode>
+                                <gco:Boolean>true</gco:Boolean>
+                            </extentTypeCode>
+                            <westBoundLongitude>
+                                <gco:Decimal>72.246195</gco:Decimal>
+                            </westBoundLongitude>
+                            <eastBoundLongitude>
+                                <gco:Decimal>168.226179</gco:Decimal>
+                            </eastBoundLongitude>
+                            <southBoundLatitude>
+                                <gco:Decimal>-55.173104</gco:Decimal>
+                            </southBoundLatitude>
+                            <northBoundLatitude>
+                                <gco:Decimal>-8.881893</gco:Decimal>
+                            </northBoundLatitude>
+                        </EX_GeographicBoundingBox>
+                    </geographicElement>
+                </EX_Extent>
+            </extent>
+            <supplementalInformation>
+                <gco:CharacterString>published externally</gco:CharacterString>
+            </supplementalInformation>
+        </MD_DataIdentification>
+    </identificationInfo>
+    <distributionInfo>
+        <MD_Distribution>
+            <distributionFormat>
+                <MD_Format>
+                    <name>
+                        <gco:CharacterString>Feature Class</gco:CharacterString>
+                    </name>
+                    <version gco:nilReason="missing"/>
+                </MD_Format>
+            </distributionFormat>
+            <distributor>
+                <MD_Distributor>
+                    <distributorContact>
+                        <CI_ResponsibleParty>
+                            <organisationName>
+                                <gco:CharacterString>Australian Government Department of Climate Change, Energy, the Environment and Water</gco:CharacterString>
+                            </organisationName>
+                            <positionName>
+                                <gco:CharacterString>NRM Programs Data Manager</gco:CharacterString>
+                            </positionName>
+                            <contactInfo>
+                                <CI_Contact>
+                                    <phone>
+                                        <CI_Telephone>
+                                            <voice>
+                                                <gco:CharacterString>02 6274 1111</gco:CharacterString>
+                                            </voice>
+                                            <facsimile>
+                                                <gco:CharacterString>02 6274 1666</gco:CharacterString>
+                                            </facsimile>
+                                        </CI_Telephone>
+                                    </phone>
+                                    <address>
+                                        <CI_Address>
+                                            <deliveryPoint>
+                                                <gco:CharacterString>GPO Box 858</gco:CharacterString>
+                                            </deliveryPoint>
+                                            <city>
+                                                <gco:CharacterString>Canberra</gco:CharacterString>
+                                            </city>
+                                            <administrativeArea>
+                                                <gco:CharacterString>ACT</gco:CharacterString>
+                                            </administrativeArea>
+                                            <postalCode>
+                                                <gco:CharacterString>2601</gco:CharacterString>
+                                            </postalCode>
+                                            <country>
+                                                <Country codeList="http://www.iso.org/iso/country_codes/iso_3166_code_lists.htm" codeListValue="AU" codeSpace="ISO3166-1">AU</Country>
+                                            </country>
+                                            <electronicMailAddress>
+                                                <gco:CharacterString>geospatial@awe.gov.au</gco:CharacterString>
+                                            </electronicMailAddress>
+                                        </CI_Address>
+                                    </address>
+                                    <onlineResource>
+                                        <CI_OnlineResource>
+                                            <linkage>
+                                                <URL>https://www.dcceew.gov.au</URL>
+                                            </linkage>
+                                            <description>
+                                                <gco:CharacterString>002</gco:CharacterString>
+                                            </description>
+                                            <function>
+                                                <CI_OnLineFunctionCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode" codeListValue="download" codeSpace="ISOTC211/19115">download</CI_OnLineFunctionCode>
+                                            </function>
+                                        </CI_OnlineResource>
+                                    </onlineResource>
+                                </CI_Contact>
+                            </contactInfo>
+                            <role>
+                                <CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="distributor" codeSpace="ISOTC211/19115">distributor</CI_RoleCode>
+                            </role>
+                        </CI_ResponsibleParty>
+                    </distributorContact>
+                    <distributorTransferOptions>
+                        <MD_DigitalTransferOptions>
+                            <onLine>
+                                <CI_OnlineResource>
+                                    <linkage>
+                                        <URL>https://www.dcceew.gov.au</URL>
+                                    </linkage>
+                                    <description>
+                                        <gco:CharacterString>002</gco:CharacterString>
+                                    </description>
+                                    <function>
+                                        <CI_OnLineFunctionCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode" codeListValue="download" codeSpace="ISOTC211/19115">download</CI_OnLineFunctionCode>
+                                    </function>
+                                </CI_OnlineResource>
+                            </onLine>
+                        </MD_DigitalTransferOptions>
+                    </distributorTransferOptions>
+                </MD_Distributor>
+            </distributor>
+            <transferOptions>
+                <MD_DigitalTransferOptions>
+                    <onLine>
+                        <CI_OnlineResource>
+                            <linkage>
+                                <URL>https://www.dcceew.gov.au</URL>
+                            </linkage>
+                            <description>
+                                <gco:CharacterString>002</gco:CharacterString>
+                            </description>
+                            <function>
+                                <CI_OnLineFunctionCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode" codeListValue="download" codeSpace="ISOTC211/19115">download</CI_OnLineFunctionCode>
+                            </function>
+                        </CI_OnlineResource>
+                    </onLine>
+                </MD_DigitalTransferOptions>
+            </transferOptions>
+        </MD_Distribution>
+    </distributionInfo>
+    <dataQualityInfo>
+        <DQ_DataQuality>
+            <scope>
+                <DQ_Scope>
+                    <level>
+                        <MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset" codeSpace="ISOTC211/19115">dataset</MD_ScopeCode>
+                    </level>
+                </DQ_Scope>
+            </scope>
+            <report>
+                <DQ_AbsoluteExternalPositionalAccuracy>
+                    <result>
+                        <DQ_ConformanceResult>
+                            <specification>
+                                <CI_Citation>
+                                    <title>
+                                        <gco:CharacterString>Absolute External Positional Accuracy Check</gco:CharacterString>
+                                    </title>
+                                    <date>
+                                        <CI_Date>
+                                            <date>
+                                                <gco:Date>2018-04-20</gco:Date>
+                                            </date>
+                                            <dateType>
+                                                <CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="revision" codeSpace="ISOTC211/19115">revision</CI_DateTypeCode>
+                                            </dateType>
+                                        </CI_Date>
+                                    </date>
+                                </CI_Citation>
+                            </specification>
+                            <explanation>
+                                <gco:CharacterString>The positional accuracy of the data varies according to the scale and origin of the source material. Component data scales were generally larger than 1:250 000. The positional accuracy of similar scale topographic data is expressed as not more than 10% of well-defined points are in error by more than 140 metres. An assessment of the linework in the data against various baseline material (drainage basin and LGA datasets) suggests that this figure provides a reasonable overall assessment of the positional accuracy of the data.
+
+To create the 2010 dataset, the NRM_regions_2010_interim layer was combined to the CONTEXT_SDE.state_borders_100k layer, with tolerances set at 0.0000001. The 2012 dataset maintains this approach. 
+The dataset has also been agreed by the states and territories as well as the Australian Government to be an accurate depiction of the NRM Regions for the purpose of reporting and public information and is therefore accurate as supplied.
+
+Linework has been crossed checked with websites of NRM regional bodies, where available. Data for WA NRM regions in this version (2012) contains known overlaps and discrepancies with boundaries published online by relevant NRM regional bodies. As these boundaries are not defined in any legislation the boundaries from the 2009 dataset have been maintained in this version, in the interest of consistent reporting.
+
+The 2017 version of the data has incorporated the boundary changes of the six WA NRMs (The boundary of Peel-Harvey NRM has not been changed) based on email from the CEO of South West Catchments Council.
+
+The WA NRM region boundary is based on the map of 18 May 2017 (Data Custodians: Landgate, WA Department of Environment, WA Department of Water, Geoscience Australia 9 project funding from Australian Government (through National Landcare Programme) and the Government of Western Australia.</gco:CharacterString>
+                            </explanation>
+                            <pass>
+                                <gco:Boolean>true</gco:Boolean>
+                            </pass>
+                        </DQ_ConformanceResult>
+                    </result>
+                </DQ_AbsoluteExternalPositionalAccuracy>
+            </report>
+            <report>
+                <DQ_NonQuantitativeAttributeAccuracy>
+                    <result>
+                        <DQ_ConformanceResult>
+                            <specification>
+                                <CI_Citation>
+                                    <title>
+                                        <gco:CharacterString>Non Quantitative Attribute Accuracy Check</gco:CharacterString>
+                                    </title>
+                                    <date>
+                                        <CI_Date>
+                                            <date>
+                                                <gco:Date>2018-04-20</gco:Date>
+                                            </date>
+                                            <dateType>
+                                                <CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="revision" codeSpace="ISOTC211/19115">revision</CI_DateTypeCode>
+                                            </dateType>
+                                        </CI_Date>
+                                    </date>
+                                </CI_Citation>
+                            </specification>
+                            <explanation>
+                                <gco:CharacterString>The main attribution supplied with this data are the names of the NRM regions and their administrative body. Region names are as agreed by the states and territories for the 2006 base layer with the exception of documented changes in subsequent versions (see Lineage section above).</gco:CharacterString>
+                            </explanation>
+                            <pass>
+                                <gco:Boolean>true</gco:Boolean>
+                            </pass>
+                        </DQ_ConformanceResult>
+                    </result>
+                </DQ_NonQuantitativeAttributeAccuracy>
+            </report>
+            <report>
+                <DQ_ConceptualConsistency>
+                    <result>
+                        <DQ_ConformanceResult>
+                            <specification>
+                                <CI_Citation>
+                                    <title>
+                                        <gco:CharacterString>Conceptual Consistency Check</gco:CharacterString>
+                                    </title>
+                                    <date>
+                                        <CI_Date>
+                                            <date>
+                                                <gco:Date>2018-04-20</gco:Date>
+                                            </date>
+                                            <dateType>
+                                                <CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="revision" codeSpace="ISOTC211/19115">revision</CI_DateTypeCode>
+                                            </dateType>
+                                        </CI_Date>
+                                    </date>
+                                </CI_Citation>
+                            </specification>
+                            <explanation>
+                                <gco:CharacterString>All records have been checked for consistency between attributes. Error checks have been undertaken to remove slivers and overlap errors using ArcGIS topology tools.</gco:CharacterString>
+                            </explanation>
+                            <pass>
+                                <gco:Boolean>true</gco:Boolean>
+                            </pass>
+                        </DQ_ConformanceResult>
+                    </result>
+                </DQ_ConceptualConsistency>
+            </report>
+            <report>
+                <DQ_CompletenessOmission>
+                    <result>
+                        <DQ_ConformanceResult>
+                            <specification>
+                                <CI_Citation>
+                                    <title>
+                                        <gco:CharacterString>Completeness Omission Check</gco:CharacterString>
+                                    </title>
+                                    <date>
+                                        <CI_Date>
+                                            <date>
+                                                <gco:Date>2018-04-20</gco:Date>
+                                            </date>
+                                            <dateType>
+                                                <CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="revision" codeSpace="ISOTC211/19115">revision</CI_DateTypeCode>
+                                            </dateType>
+                                        </CI_Date>
+                                    </date>
+                                </CI_Citation>
+                            </specification>
+                            <explanation>
+                                <gco:CharacterString>The dataset is a complete picture of all NRM Regions as supplied by the states and territories. Users should be aware that regional boundaries may change as a result of changes to administrative arrangements either by state/territory governments or regional groups.</gco:CharacterString>
+                            </explanation>
+                            <pass>
+                                <gco:Boolean>true</gco:Boolean>
+                            </pass>
+                        </DQ_ConformanceResult>
+                    </result>
+                </DQ_CompletenessOmission>
+            </report>
+            <lineage>
+                <LI_Lineage>
+                    <statement>
+                        <gco:CharacterString>Original NHT layer
+
+Data was supplied from state GIS data for:
+
+NSW - Catchment Management Authority Areas
+QLD - Queensland NRM Regional Boundaries
+SA - NRM Regions
+TAS - Department of Primary Industries, Water and Environment NRM Regions
+VIC - Catchment Management Board Boundaries
+WA - NRM Regions of Western Australia
+NT - 1:100 000 State Border and Coastline
+ACT - 1:100 000 State Border
+
+The data supplied for TAS and WA was supplied in shapefile format with Qld, NSW, VIC data supplied in ArcInfo Export format.
+
+As there is only one NRM region for NT, this was derived from the coverage 1:100 000 Coastlines and State Borders.
+
+All source coverages were projected to Geographics, and consistent attribution was applied. All source coverages were appended, and the result cleaned with 0.0001 tolerances. On inspection of the state data it was noted that the borders and coastlines used were different amongst those datasets supplied by states and territories. The 1:100 000 Geoscience Australia (formerly AUSLIG) state borders and coastline were appended to the coverage in an effort to standardise the series at a national level. Slither polygons along common boundaries were eliminated, and a final check of attribution conducted.
+
+In Februrary 2004, new NSW NRM regions (CMA boundaries) were supplied to DEH. The existing NSW regions were replaced by the new boundaries, which are largely amalgamations of the existing regions (the number of NSW regions was reduced from 20 to 13), however there were also a number of minor boundary changes. The 1:100 000 Coastlines and State border was retained and only internal boundaries updated.
+
+In addition to the new NSW boundaries, a number of changes were also made in February 2004. A number of changes were made to update the NRM dataset:
+
+- Minor updates were made to VIC, SA, WA and Qld region names
+- Attributional corrections made to some islands and regions
+- Islands in Bass Strait were assigned to Vic or Tas as according to the Aus100k dataset
+- Some islands in Bass Strait containing sliver polygons corrected
+- New numeric code assigned to each region
+
+In February 2005, a number of further changes were made to the data set:
+
+- Torres Strait boundary updated as per the Bilateral Agreement. Was derived from the latest GBRMP boundary (Great Barrier Reef Marine Park Authority, July 1 2004), the Australia/Papua New Guinea border (Australian Maritime Boundaries Information System, Geoscience Australia 2001), the boundary of Australian territorial waters (Australian Maritime Boundaries Information System, Geoscience Australia 2001), the 11 degrees south latitude and the coastline of the mainland (Geoscience Australia 1:100000 coastline). These changes also resulted in an altered Cape York region boundary.
+
+- The Qld marine zones were changed to the 3nm limit (Australian Maritime Boundaries Information System, Geoscience Australia 2001), as well as some minor changes to internal region boundaries supplied by QLD State
+
+- Marine zones to the 3nm limit (Australian Maritime Boundaries Information System, Geoscience Australia 2001) were added to Tasmania. The marine zone was divided amongst the regions by extending the region boundaries beyond the coastline in the same direction. The boundary between South and North West was determined by locating the mid-point of the harbour (derived using a series of buffers).
+
+- Macquarie Island and corresponding 3nm limit was added to South  NRM region in Tasmania (Geoscience Australia 1:100000 coastline and Australian Maritime Boundaries Information System, Geoscience Australia 2001)
+
+- An incorrectly labelled polygon was corrected from terrestrial to marine in Northern Gulf.
+
+- The border between East Gippsland and North East (VIC) was updated using data supplied by the Victorian Department of Sustainability and Environment.
+
+- The dataset was integrated to the Geoscience Australia 1:100000 coastline with a cluster tolerance of 0.00005 degrees. The resulting NRM dataset aligns exactly with the coastline.
+
+August 2005:
+New NRM boundaries were provided by the South Australian Department of Water, Land and Biodiversity Conservation.  These boundaries were added to the national dataset.  The SA coastline was sourced using the Geoscience Australia 1:100,000 Coastline.  The new SA boundaries include a marine component to the three nautical mile limit.
+
+November 2006:
+Region names updated to remove / and replace with - (i.e. Hawkesbury/Nepean became Hawkesbury-Nepean). Region was removed from region names where applicable (i.e. South West Region became South West).
+
+
+2006 Base Layer
+The base layer for this dataset is the Natural Resource Management (NRM) Region Boundaries (formerly known as Natural Heritage Trust II (NHT2) Region Boundaries (2006)). This base layer has been perdiodically reviewed and built on to develop subsequent datasets. 
+The original 2006 base layer included an offshore component for regions in SA, TAS and QLD. Offshore components for the other States and the Northern Territories were created using Geoscience Australia's AMB 2006 coastal waters data. Mainland region boundaries were checked with all state and territory agencies resulting in changes to the internal mainland boundaries for QLD and WA. The amended boundaries were sourced from the relevant agency from these States.
+
+Geoscience Australia's Geodata Coast 100K 2004 dataset was used for mainland state/territory borders. The AMB 2006 data was used to define the offshore boundaries between the States and the Northern Territory. Offshore boundaries between NRM Regions within a State were produced by extending region boundaries at 90 degrees to the state 100k coastline unless otherwise requested by state or territory agencies. 
+
+2009 version 
+This version included updates to: the internal boundaries within WA and Qld; the seaward extent of coastal regions, which were extended to the 3 Nm coastal waters limit for all States and the Northern Territory; the inclusion of more offshore islands (and coastal waters); and the addition of external territories and their 12 Nm territories sea.
+The coastline has been removed from the data in line with the decision to extend all coastal NRM Regions to the outer limit of the adjacent coastal waters. It should be noted that the removal of the coastline means that islands lying within the outer limit of the Coastal Waters adjacent to the mainland are no longer depicted as separate features in the data. For example the many islands in Shark Bay WA are not displayed as separate entities in this dataset as they fall within the expanded (marine) extent of the Rangelands NRM Region in the new dataset. Users intending to create sub-continental scale maps to communicate locations of NRM regions boundaries are recommended to use additional layers containing coasts and near shore islands (as well as state/territory borders and major towns if required). 
+
+Not all coastal waters for the States and/or the Northern Territory have been included in the data. The primary consideration was whether land based activities might affect the adjacent waters. For the 2009 and subsequent datasets, coastal waters adjacent to the mainland and islands contained in the Geodata Coast 100K dataset are included. Significant islands include Macquarie Island (Tas) and Lord Howe Island (NSW).
+
+Australia's External Territories (Heard and McDonald Islands, Cocos Keeling Islands, Christmas Island, Ashmore and Cartier Islands, and Norfolk Islands) have also been included in the 2009 and subsequent versions. The reporting region for these islands is the area within the outer limit of the 12 Nm Territorial Sea adjacent to each of these External Territories as sourced from the AMB 2006 data.
+
+Specific issues relating to the development of the 2009 version for each State are described below:
+
+WA- Data supplied from different WA regions contained overlaps around the Perth NRM. The Perth NRM confirmed that the NRM bodies work across neighbouring regions. As these boundaries remain ambiguous (and are not defined in any legislation) the Australian Government Land and Coasts settled on the boundaries in this dataset for the purposes of reporting.
+
+NSW - Jervis Bay was added to the Southern Rivers NRM region after consultation with the Australian Government Land and Coasts NSW Team. Lord Howe Island was added to the NSW dataset as a part of the Northern Rivers NRM Region. The NSW Catchment Management Authority (CMA) Hawkesbury-Nepean, provided the marine NRM divisions between theirs and Central-Rivers, identifying that their northern regional boundary bisects Lion Island.
+
+VIC - The Victorian Department of Sustainability and Environment (DSE) provided a state NRM dataset for this update. Their boundaries matched the pre-existing NRM Region Boundaries dataset, except for one small area between East and West Gippsland. Victoria agreed to use the pre-existing NRM boundaries in this area. 
+
+The addition of the 3Nm coastal waters component for Victoria presented a challenge in defining the offshore boundaries between Port Phillip and Westernport and the neighbouring NRM Regions of Corangamite and West Gippsland. The islands on the western shore of Port Phillip Bay in the vicinity of Queenscliff (Swan Island and Duck Island) and Swan Bay have been included in the Corangamite NRM region. From north to south the border between the Corangamite NRM region and Port Phillip and Westernport Bay NRM region is a line drawn from the eastern arm of Edwards Point to Swan Point, along the eastern shore of Swan Island and between the southern extremity of Swan Island to the eastern extremity of Point Queenscliff. The offshore boundary between these regions is a line drawn directly south from Point Lonsdale to the outer limit of coastal waters. Finally, the offshore boundary between Port Phillip and Westernport Bay and West Gippsland is a line drawn directly south from the town of San Remo to the outer limit of coastal waters.
+
+Tas - The area of Coastal Waters adjacent to the Hogan Group of islands in Bass Straight is divided between Victoria and Tasmania. For the purpose of this dataset the entire area has been allocated to the North NRM region of Tasmania.
+
+2010 Version
+The major changes to the data for this dataset are that new NRM region boundaries for South Australia which came into effect on 1 July 2009 have been incorporated into the data; and, the data structure (attributes) have been modified. Other more minor changes include: all offshore boundaries between States and/or the Northern Territory were reviewed to be consistent with the agreed coastal waters boundaries as depicted in Geoscience Australia's AMB 2006 data; the area of coastal waters adjacent to the Cooperative Management Area in Queensland has been included in that region; and, the external territory of Ashmore and Cartier Islands has been added to the dataset.
+
+2012 Version
+This dataset incorporates changes to the NSW NRM regions that came into effect on 12th October 2012 (NSW Catchment Management Authorities Amendment Order 2012). Major changes are: merger of Sydney Metropolitan NRM region into the Hawkesbury Nepean NRM region; merger of Lower Murray Darling NRM region into the Murray NRM region; changes of the boundary of Western NRM region; and changes of the boundary of the Central West NRM region. 
+
+2014 Version
+This 2014 version marks the change in NSW from Catchment Management Authorities (CMA) to Local Land Service areas which will now be used for NRM regions in NSW. Local Land service areas came into effect in NSW on 1 January 2014. A couple of gaps between Cape York and Torres Strait NRMs have been removed. Known discrepancies with published boundaries for several NRM regional bodies in WA (as per the 2009 version) remain in this dataset.  Further detail is in the data quality report section below.
+
+Updated "North West" and "South East" NRM regions in NSW to "North West NSW" and "South East NSW" to maintain unique NRM names for PMST funtionality (July 2014)
+
+2015 Version
+This 2015 version defines the Peel-Harvey NRM region. The OceanWatch NRM has been recognised but there is no spatial information defined. Several NRM names have also been updated as a result of new information:
+1. Fitzroy changed to Fitzroy Basin
+2. Burdekin changed to NQ Dry Tropics
+3. Wet Tropics changed to Terrain
+4. Border Rivers changed to QMDC (Queensland Murray Darling Basin)
+5. MacKay Whitsunday changed to Reef Catchments
+6. Avon changed to Wheatbelt
+7. North West changed to Cradle Coast
+
+It also updates the marine portion of the NRM regions to be consistent with the current (2014) Australian Maritime Boundaries Information System (AMBIS) coastal water limit boundary. The majority of these changes resulted in a negligible change to the boundaries (in the order of millimetres). There were, however 5 NRM regions which gained additional islands as a result of the change (Cape York, Rangelands, North, Cradle Coast and South Coast). Islands which were either within the either contiguous with the 3 nautical mile limit or in amongst other islands that were historically included in a region were added to the region boundaries. Coastal NRM region governing bodies were informed of these changes and no objections were received.
+
+2016 Version
+The 2016 version 2 updates the marine portion of the NRM regions to be consistent with the current (2015) Australian Maritime Boundaries Information System (AMBIS) coastal water limit boundary. It also includes a new unique ID field for sorting purposes (this is explained in detail below). Three NRM names have also been updated as a result of new information from relevant state/territory agencies and/or NRM regional bodies, as follows: 
+
+1. “Avon” changed to “Wheatbelt”
+2. “North West” changed to “Cradle Coast”
+
+The 2016 version 2 maintains definitions established in the 2015 version, including for the Peel-Harvey NRM region and for the OceanWatch Australia Limited NRM organisation (not spatially defined). It also maintains changes made in earlier versions including: the 2014 changes in NSW from Catchment Management Authorities (CMA) to Local Land Service areas; and the 2012 update/formalisation of the 2010 dataset (which was an interim update of the NRM Regions 2009 dataset, released Feb 2009). The original base layer version of this dataset was released in 2006 as the Natural Heritage Trust II (NHT2) Region Boundaries dataset. 
+
+Whilst the boundaries of NRM Regions are defined by legislation in some states and territories this dataset should not be used to represent legal boundaries in any way. It is an administrative dataset developed for the purpose of reporting and public information. It should be noted that from time to time the states and/or territories may revise their regional boundaries in accordance with local needs and therefore alterations to either the attribution or boundaries of the data may occur in the future.
+
+In total, this dataset now represents 61 NRM regions, two of which have large and remote islands which are distinguished in the spatial data, resulting in 63 map objects. The 61 NRM regions comprise 56 mainland regions administered by 55 NRM regional bodies (the Cooperative Management Area in QLD is jointly administered by the two adjacent regional bodies: the Cape York and Northern Gulf NRM bodies) and seven islands (five administered by the Australian Government as external territories, and two administered by nearby mainland NRM regional bodies, which are shown as separate map objects).
+
+The 2016 version 2 includes a new unique ID field in the table structure to allow for sorting based on state, region name and region object (where there is more than one part).
+
+
+2020 Version
+
+The 2020 version updates the previous version (2017) with changes to boundaries of South Australian NRM Regions to align with new regional landscape boundaries (https://data.sa.gov.au/data/dataset/landscapes-sa-boundaries) under the Landscapes South Australia Act 2019 (SA) Act which replaced the Natural Resources Management Act 2004 (SA) Act. Minor edits were made to remove gaps, slivers and overlaps so the new SA boundaries aligned with non-SA NRM Regions. The "Hills and Fleurieu" and "Green Adelaide" Landscapes SA boundaries were merged to form the single 4010 "Adelaide and Mount Lofty Ranges" NRM Region, although at the request of the data owner, the previous names and internal boundaries were retained within this NRM region.  Existing NRM Region names were retained and the following shows the Landscapes SA region -&gt; NRM Region names:
+
+Landscapes SA -&gt; NRM Regions
+Alinytjara Wilurara -&gt; 4020. Alinytjara Wilurara
+Eyre Peninsula -&gt; 4030. Eyre Peninsula
+Green Adelaide -&gt; 4010. Adelaide and Mount Lofty Ranges
+Hills and Fleurieu -&gt; 4010. Adelaide and Mount Lofty Ranges
+Kangaroo Islandv 4040. Kangaroo Island
+Limestone Coast -&gt; 4080. South East
+Murraylands and Riverland -&gt; 4070. South Australian Murray Darling Basin
+Northern and Yorke -&gt; 4050. Northern and Yorke
+South Australian Arid Lands -&gt; 4060. South Australian Arid Lands
+
+Additionally a number of gaps and overlaps in the Western Australia NRM regions were fixed. 
+
+2022 Version
+
+• This version of NRM_Regions replaces the old NLPMU layer so that Regional Land Management Partners, NRM_Regions including Marine and remote Indigenous Procurement Policy area (RIPP) may be displayed using the one dataset.
+• Updated department name Department of Climate Change, Energy, Environment and Water
+• Updated section/branch name
+• Updated logo
+• ‘Adelaide and Mount Lofty Ranges’ split into ‘Green Adelaide’ and ‘Hills ad Fleurieu’
+• ‘Torres Strait’, ‘Green Adelaide’ and ‘Marine NRM’ added * to match note *management unit covered through other financial arrangements
+• ‘South West Queensland’, ‘Maranoa Balonne and Border Rivers’ and ‘Condamine’ combined into ‘Southern Queensland’ with light grey dotted line to denote NRM borders. 
+• ‘Torres Strait’ and ‘Green Adelaide’ symbology changed to grey hatched filling. 
+• The management units are coloured based on their overlap with the remote Indigenous Procurement Policy area (RIPP).
+o Remote management units are orange – to be incl. the management unit needed to have more than 50% overlap with the RIPP. 
+o Non-remote management units are green
+o *Management units covered through other financial arrangements management units are grey with hatching
+
+</gco:CharacterString>
+                    </statement>
+                </LI_Lineage>
+            </lineage>
+        </DQ_DataQuality>
+    </dataQualityInfo>
+    <metadataMaintenance>
+        <MD_MaintenanceInformation>
+            <maintenanceAndUpdateFrequency>
+                <MD_MaintenanceFrequencyCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_MaintenanceFrequencyCode" codeListValue="asNeeded" codeSpace="ISOTC211/19115">asNeeded</MD_MaintenanceFrequencyCode>
+            </maintenanceAndUpdateFrequency>
+        </MD_MaintenanceInformation>
+    </metadataMaintenance>
+</MD_Metadata>
