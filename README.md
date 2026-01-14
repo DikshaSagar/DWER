@@ -1,4 +1,4 @@
-# Climate Data Analysis Toolkit
+# Climate Data Analysis
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DikshaSagar/DWER/HEAD)
 
@@ -96,13 +96,15 @@ Adds dynamic controls for exploratory analysis within Jupyter.
 git clone <repository-url>
 cd <repository-folder>
 
-Create an environment
+-----
+
+### Create an environment
 conda create -n climate-toolkit python=3.10
 conda activate climate-toolkit
 pip install -r requirements.txt
 jupyter lab
 
-Launch Jupyter
+### Launch Jupyter
 jupyter lab
 
 -------
