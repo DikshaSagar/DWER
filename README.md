@@ -113,16 +113,22 @@ jupyter lab
 
 ## Acknowledgement
 
-This repository contains example workflows, analysis notebooks, and supporting utilities developed as part of a Climate Science Initiative (CSI) project. The material has been informed by contributions, feedback, and established best practices from the climate science and data analysis community.
+## Acknowledgement
 
-The structure of the notebooks and analytical approaches adopted here draw inspiration from community-led efforts in climate model evaluation and data analysis, including methodologies developed by the Program for Climate Model Diagnosis and Intercomparison (PCMDI) and related model intercomparison initiatives. These influences are acknowledged as guidance rather than direct dependencies.
+This repository contains example workflows, analysis notebooks, and supporting utilities developed as part of a Climate Science Initiative (CSI) project. The material has been informed by established best practices in climate data analysis and by feedback from researchers and practitioners working with regional climate projection datasets.
 
-Regional climate projection data used throughout this repository are sourced from the NARCliM2.0 project and accessed via National Computational Infrastructure (NCI) THREDDS services. Users are encouraged to consult the original data providers and official documentation for authoritative descriptions of the datasets, metadata, and recommended usage.
+Regional climate projection data used in these examples are sourced from the NARCliM2.0 project and accessed via National Computational Infrastructure (NCI) THREDDS services. Additional datasets and contextual information may reference material published by the Department of Water and Environmental Regulation (DWER) and Data WA.
 
-This repository is intended to serve as an open, evolving resource for demonstration, exploration, and learning, supporting transparent and reproducible climate data analysis workflows.
+The Government of Western Australia respectfully acknowledges the Traditional Owners of Country throughout Western Australia and pays its respects to Elders past, present and emerging.
 
-## Disclaimer
+## Disclaimer and Terms of Use
 
-The workflows, analyses, and visualisations provided in this repository are supplied for demonstration and exploratory purposes only. While care has been taken to ensure methodological clarity and internal consistency, the outputs should not be used as the sole basis for decision-making without independent validation and consultation of authoritative data sources.
+This repository is provided for demonstration, exploratory analysis, and learning purposes only. It does not represent an official operational product, advice, or service of the Government of Western Australia.
 
-Any interpretations, conclusions, or errors arising from the use of this repository remain the responsibility of the authors and contributors.
+Use of any Government of Western Australia websites, services, or datasets referenced in this repository is subject to the relevant official terms and conditions, including the WA.gov.au Terms of Use:
+https://www.wa.gov.au/terms-of-use
+
+Where datasets are sourced from Data WA or DWER, use of those datasets is subject to the applicable data licence or acceptance agreement, including the DWER Active Acceptance Licence Agreement:
+https://catalogue.data.wa.gov.au/dataset/dwer-active-acceptance-licence-agreement
+
+Users are responsible for ensuring their use of data and outputs complies with all applicable licence conditions and legal requirements. Any interpretations, conclusions, or errors arising from the use of this repository remain the responsibility of the user.
