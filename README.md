@@ -95,12 +95,17 @@ Adds dynamic controls for exploratory analysis within Jupyter.
 git clone <repository-url>
 cd <repository-folder>
 ```
-Create and activate a conda environment
+###Create and activate a conda environment
+
 conda create -n climate-toolkit python=3.10
 conda activate climate-toolkit
-Install dependencies
+
+###Install dependencies
+
 pip install -r requirements.txt
-Launch JupyterLab
+
+
+###Launch JupyterLab
 jupyter lab
 
 
