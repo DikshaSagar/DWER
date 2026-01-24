@@ -108,3 +108,19 @@ jupyter lab
 jupyter lab
 
 -------
+
+## Acknowledgement
+
+This repository contains example workflows, analysis notebooks, and supporting utilities developed as part of a Climate Science Initiative (CSI) project. The material has been informed by contributions, feedback, and established best practices from the climate science and data analysis community.
+
+The structure of the notebooks and analytical approaches adopted here draw inspiration from community-led efforts in climate model evaluation and data analysis, including methodologies developed by the Program for Climate Model Diagnosis and Intercomparison (PCMDI) and related model intercomparison initiatives. These influences are acknowledged as guidance rather than direct dependencies.
+
+Regional climate projection data used throughout this repository are sourced from the NARCliM2.0 project and accessed via National Computational Infrastructure (NCI) THREDDS services. Users are encouraged to consult the original data providers and official documentation for authoritative descriptions of the datasets, metadata, and recommended usage.
+
+This repository is intended to serve as an open, evolving resource for demonstration, exploration, and learning, supporting transparent and reproducible climate data analysis workflows.
+
+## Disclaimer
+
+The workflows, analyses, and visualisations provided in this repository are supplied for demonstration and exploratory purposes only. While care has been taken to ensure methodological clarity and internal consistency, the outputs should not be used as the sole basis for decision-making without independent validation and consultation of authoritative data sources.
+
+Any interpretations, conclusions, or errors arising from the use of this repository remain the responsibility of the authors and contributors.
