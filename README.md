@@ -113,8 +113,6 @@ jupyter lab
 
 ## Acknowledgement
 
-## Acknowledgement
-
 This repository contains example workflows, analysis notebooks, and supporting utilities developed as part of a Climate Science Initiative (CSI) project. The material has been informed by established best practices in climate data analysis and by feedback from researchers and practitioners working with regional climate projection datasets.
 
 Regional climate projection data used in these examples are sourced from the NARCliM2.0 project and accessed via National Computational Infrastructure (NCI) THREDDS services. Additional datasets and contextual information may reference material published by the Department of Water and Environmental Regulation (DWER) and Data WA.
