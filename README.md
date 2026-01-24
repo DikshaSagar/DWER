@@ -88,26 +88,23 @@ Adds dynamic controls for exploratory analysis within Jupyter.
 > Download outputs or commit changes before closing the session.
 
 ---
-
 ## Local setup
 
 ### Clone the repository
 ```bash
 git clone <repository-url>
 cd <repository-folder>
-
------
-
-### Create an environment
+```
+Create and activate a conda environment
 conda create -n climate-toolkit python=3.10
 conda activate climate-toolkit
+Install dependencies
 pip install -r requirements.txt
+Launch JupyterLab
 jupyter lab
 
-### Launch Jupyter
-jupyter lab
 
--------
+---
 
 ## Acknowledgement
 
