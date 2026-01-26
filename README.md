@@ -92,8 +92,6 @@ This repository contains example workflows, analysis notebooks, and supporting u
 
 Regional climate projection data used in these examples are sourced from the NARCliM2.0 project and accessed via National Computational Infrastructure (NCI) THREDDS services. Additional datasets and contextual information may reference material published by the Department of Water and Environmental Regulation (DWER) and Data WA.
 
-The Government of Western Australia respectfully acknowledges the Traditional Owners of Country throughout Western Australia and pays its respects to Elders past, present and emerging.
-
 ## Disclaimer and Terms of Use
 
 This repository is provided for demonstration, exploratory analysis, and learning purposes only. It does not represent an official operational product, advice, or service of the Government of Western Australia.
