@@ -227,7 +227,15 @@ def open_selected_dataset(variable: str, year: str):
     opendap_url = opendap_url_from_urlpath(urlpath)
 
     print(f"📂 Loading {variable} ({year}): {name}")
-    ds_new = xr.open_dataset(opendap_url, engine="pydap")
+    # Prefer pydap if installed, otherwise fall back to netcdf4
+    try:
+        ds_new = xr.open_dataset(opendap_url, engine="pydap")
+    except ValueError as exc:
+        # xarray raises ValueError when the engine is not recognized
+        if "unrecognized engine 'pydap'" in str(exc):
+            ds_new = xr.open_dataset(opendap_url, engine="netcdf4")
+        else:
+            raise
 
     year_int = int(year)
     time_mask = ds_new.time.dt.year == year_int
