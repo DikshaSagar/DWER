@@ -1,318 +1,435 @@
-**User Guide**
+# User Guide  
+WA Climate Notebook Collection (NARCliM 2.0)
 
-Climate Data Analysis Toolkit
--------------------------------------------------------------------------------------------------------------------
-**1. Overview**
+---
 
-This toolkit provides a structured workflow for accessing, processing, analysing, and visualising regional climate model data using Jupyter Notebooks.
+## 1. Purpose and scope
 
-It is designed to support:
+This notebook collection demonstrates a complete, reproducible workflow for working with NARCliM 2.0 regional climate model data over Western Australia using Python and Jupyter notebooks.
 
-Reproducible climate data analysis
+It is designed to help you:
 
-Rapid visual inspection of large datasets
+- Access NARCliM 2.0 data remotely via NCI THREDDS / OPeNDAP.  
+- Subset to Western Australia and official WA NRM regions.  
+- Regrid model output to regular latitude–longitude grids for mapping and GIS.  
+- Generate maps, time series, and regional climate summaries.  
+- Explore results interactively in a notebook-based “dashboard”.
 
-Regional-scale climate summaries
+Although the examples use NARCliM 2.0, the structure can be reused for other regional climate datasets with minimal changes to data paths and variable names.
 
-Interactive exploration of climate variables
+---
 
-The toolkit is modular. Each notebook performs a defined function and can be used independently.
+## 2. How to run the toolkit
 
-**2. Access modes**
+### 2.1 Online (e.g. Binder or hosted Jupyter)
 
-The toolkit can be used in two ways:
+If you provide a Binder or similar badge in the repository, users can:
 
-2.1 Online via Binder
+1. Open the GitHub repository containing these notebooks.  
+2. Click the “Launch Binder” badge.  
+3. Wait for the JupyterLab environment to start.  
+4. Open any notebook (01–06) from the file browser.  
+5. Run cells with `Shift+Enter`.
 
-Provides immediate access without local installation.
-Suitable for demonstration, exploration, and lightweight analysis.
+Binder-style environments are ideal for:
 
-2.2 Local execution
+- Demonstrations and training.  
+- Quick exploration of variables and plots.  
+- Sharing reproducible examples.
 
-Recommended for extended workflows, large datasets, and computationally intensive processing.
+They are not ideal for:
 
-**3. Getting started with Binder**
+- Large downloads or long regridding jobs.  
+- Long-running analyses—sessions are temporary and can time out.
 
-Open the GitHub repository containing this toolkit.
+Always download important outputs (plots, NetCDF, CSV) before closing the session.
 
-Click the Launch Binder badge.
+### 2.2 Local setup using Miniforge and mamba
 
-Wait for the environment to initialise.
+For sustained use and larger analyses, run the notebooks locally using a dedicated Conda environment via **Miniforge + mamba**.
 
-JupyterLab will open in the browser.
+#### 2.2.1 Why this setup?
 
-Select any notebook from the file panel and execute cells using Shift + Enter.
+- Lightweight and free.  
+- Uses `conda-forge` by default (good for scientific Python).  
+- `mamba` solves environments faster and with fewer conflicts than `conda`.  
+- Works on macOS (Intel and Apple Silicon), Windows, and Linux.
 
-Binder sessions are temporary. Any changes should be downloaded or committed back to the repository before closing the session.
+#### 2.2.2 Install Miniforge (one-time)
 
-**4. Local setup (optional)**
-4.1 Clone the repository
-git clone <repository-url>
-cd <repository-folder>
+1. Go to: <https://github.com/conda-forge/miniforge>.  
+2. Download the installer for your OS:
 
-4.2 Create an environment
-conda create -n climate-toolkit python=3.10
-conda activate climate-toolkit
-pip install -r requirements.txt
+   | Operating system        | Installer                     |
+   |-------------------------|------------------------------|
+   | macOS (Apple Silicon)   | `Miniforge3-MacOSX-arm64.sh` |
+   | macOS (Intel)           | `Miniforge3-MacOSX-x86_64.sh`|
+   | Windows                 | `Miniforge3-Windows-x86_64.exe` |
+   | Linux                   | `Miniforge3-Linux-x86_64.sh` |
 
-4.3 Launch Jupyter
+3. Run the installer and accept the default options.
+
+#### 2.2.3 Verify installation
+
+Open a terminal (or Anaconda Prompt on Windows) and run:
+
+```bash
+conda --version
+mamba --version
+```
+If both commands print version numbers, Miniforge is installed correctly.
+
+#### 2.2.4 Create and activate an environment
+Create a dedicated environment for this project:
+
+```bash
+mamba create -n climate-env python=3.10
+conda activate climate-env
+```
+Your prompt should show (climate-env) once activated.
+
+#### 2.2.5 Install required packages
+Install the core packages used in the notebooks:
+
+```bash
+mamba install -y jupyterlab numpy pandas xarray netcdf4 matplotlib cartopy geopandas shapely pyproj dask ipywidgets
+```
+Do not install Cartopy with pip; install it via mamba/conda only.
+
+#### 2.2.6 Launch JupyterLab and pick the kernel
+From the root of this repository:
+
+```bash
 jupyter lab
+```
+In JupyterLab:
 
-**5. Toolkit structure**
+Open any notebook.
 
-The notebooks are organised by function, not by dependency.
-Each notebook addresses a specific stage of the workflow.
+Go to “Kernel → Change Kernel”.
 
-Recommended operational sequence:
+Select “Python (climate-env)”.
 
-Overview
+This ensures notebooks use the environment you just created.
 
-Data access
+#### 2.2.7 Quick sanity check
+In any notebook, run:
 
-Spatial preparation
+python
+import xarray as xr
+import geopandas as gpd
+import cartopy.crs as ccrs
+import matplotlib.pyplot as plt
 
-Regional aggregation
+print("Environment setup successful!")
+If this cell runs without errors, your local environment is ready.
 
-Visualisation
+#### 2.2.8 Optional: export the environment
+To share your exact environment with others:
 
-Climate summaries
+```bash
+conda env export > environment.yml
+```
+Others can then recreate it with:
 
-Interactive exploration
+```bash
+conda env create -f environment.yml
+```
+#### 2.2.9 Troubleshooting
+conda: command not found
 
-**6. Functional description of notebooks**
+Restart the terminal.
 
-6.1 Overview
+Ensure Miniforge added itself to your PATH at install time.
 
-Purpose:
-Provides context for the toolkit, outlines scope, and describes how the workflow is structured.
+Cartopy installation fails
 
-Supports:
+Use mamba, not pip.
 
-Understanding the analytical scope
+Confirm you are using Python 3.10.
 
-Identifying appropriate notebooks for specific tasks
+Kernel not visible in Jupyter
 
-6.2 Data access
+Activate climate-env before starting jupyter lab.
 
-Purpose:
-Implements a standardised approach for loading NARCliM climate data from THREDDS / OPeNDAP services.
+Restart JupyterLab after creating the environment.
 
-Supports:
+## 3. Notebook overview
+The notebooks are organised by function; you can often open an individual notebook directly once you have the appropriate dataset available.
 
-Accessing remote NetCDF datasets
+Order	Notebook	Main role
+01	01_accessing_data.ipynb	Access NARCliM 2.0 data via NCI THREDDS / OPeNDAP.
+02	02_regridding.ipynb	Regrid from native WRF/NARCliM grid to regular lat–lon.
+03	03_wa_nrm_region.ipynb	WA NRM region masks and regional time series.
+04	04_mapping_and_visualisation.ipynb	Static maps and time series for WA subsets.
+05	05_basic_climate_analysis.ipynb	Seasonal means, anomalies, GIS-ready exports.
+06	06_interactive_analysis.ipynb	Interactive, widget-based exploration.
+A typical end-to-end sequence is:
 
-Inspecting dataset structure and metadata
+Access data (01).
 
-Selecting variables and temporal ranges
+Regrid if required (02).
 
-6.3 Spatial regridding
+Build WA / NRM region summaries on the native grid (03).
 
-Purpose:
-Prepares datasets for consistent spatial analysis and visualisation.
+Map and visually inspect fields (04).
 
-Supports:
+Compute climate statistics and export products (05).
 
-Converting native model grids to regular latitude–longitude grids
+Explore results interactively (06).
 
-Ensuring cross-dataset compatibility
+## 4. Notebook details
+### 4.1 01_accessing_data.ipynb — Data access
+Goal
+Provide a standard pattern for connecting to NARCliM 2.0 data on NCI’s THREDDS server using OPeNDAP, without downloading full NetCDF files.
 
-Preparing data for aggregation and mapping
+Key capabilities
 
-6.4 Regional analysis (WA NRM regions)
+Build and document OPeNDAP URLs for specific NARCliM 2.0 experiments, models, and variables (e.g. tasmax).
 
-Purpose:
-Enables region-based climate analysis using official WA Natural Resource Management boundaries.
+Open remote NetCDF datasets with xarray.open_dataset, using appropriate decode and caching options.
 
-Supports:
+Inspect dataset structure: dimensions, coordinates, attributes, and variable metadata.
 
-Overlaying gridded climate data with regional polygons
+Select variables and time slices for use in later notebooks.
 
-Producing region-level climate summaries
+When to use
 
-Generating outputs aligned with planning and management scales
+First contact with a new dataset or scenario.
 
-6.5 Plotting and visualisation
+Whenever you need to confirm variable names, units, and time coverage before analysis.
 
-Purpose:
-Provides tools for producing clear, consistent, publication-ready figures.
+### 4.2 02_regridding.ipynb — Spatial regridding
+Goal
+Convert native NARCliM / WRF grids to regular latitude–longitude grids suitable for mapping, multi-model comparison, or GIS workflows.
 
-Supports:
+Key capabilities
 
-Spatial mapping
+Use xesmf to construct conservative or bilinear regridders between the native grid and a user-defined target grid.
 
-Time-series plotting
+Handle rotated pole grids by using the 2‑D lat/lon fields as the source grid.
 
-Projection handling and styling
+Save regridded output to NetCDF for reuse in 03–05, or for external GIS applications.
 
-Export of figures for reports and presentations
+When to use
 
-6.6 Basic climate analysis
+Before overlaying with other gridded datasets.
 
-Purpose:
-Implements core climate statistics and summary routines.
+Before exporting rasters for GIS or web mapping services.
 
-Supports:
+When you want identical grids across scenarios or models.
 
-Calculation of means, minima, and maxima
+### 4.3 03_wa_nrm_region.ipynb — WA NRM regions
+Goal
+Produce region-based summaries using official WA NRM region boundaries, working on the native WRF grid.
 
-Identification of temporal patterns
+Key capabilities
 
-Generation of repeatable analytical outputs
+Load the official “NRM Regions 2023” shapefile and filter to Western Australia.
 
-6.7 Interactive analysis
+Construct a GeoDataFrame of WRF grid points, storing native indices rlat, rlon and geometries (via shared helpers in climate_utils.py).
 
-Purpose:
-Adds an interactive layer for exploratory data analysis.
+Spatially join grid points to NRM polygons so that each grid cell is tagged with its NRM region.
 
-Supports:
+For each region, build boolean masks on the native grid and compute regional time series (e.g. tasmax converted from Kelvin to Celsius).
 
-Dynamic variable and time selection
+Plot multi-region time series and build summary tables of annual or monthly mean tasmax per region.
 
-Rapid visual feedback
+Typical outputs
 
-Prototype dashboard-style interaction within Jupyter
+Seven monthly time series (one per WA NRM region) for tasmax or other variables.
 
-**7. Typical operational workflows**
+A table of annual mean temperature per region.
 
+A region-labelled point table that can be reused by other notebooks.
+
+When to use
+
+When stakeholders need results summarised at NRM-region scale rather than grid-cell scale.
+
+Prior to building dashboards or tables comparing regions.
+
+### 4.4 04_mapping_and_visualisation.ipynb — Mapping
+Goal
+Create publication-ready maps and time series for Western Australia, handling the rotated NARCliM grid correctly.
+
+Key capabilities
+
+Subset to a WA bounding box using the 2‑D lat/lon fields and a reusable WA mask (e.g. mask_wa_bbox).
+
+Convert tasmax to degrees Celsius for more intuitive interpretation.
+
+Use Cartopy to plot with pcolormesh(lon, lat, data, transform=ccrs.PlateCarree()), ensuring grid points appear in their true geographic locations.
+
+Overlay coastlines and other Cartopy features for context, and adjust colour scales and labels for clarity.
+
+Typical outputs
+
+Single time-slice maps (e.g. monthly tasmax over WA).
+
+Quick-look plots to confirm that subsetting and regridding worked as expected.
+
+When to use
+
+For rapid visual QC of new datasets or scenarios.
+
+When you need static images for reports, presentations, or documentation.
+
+### 4.5 05_basic_climate_analysis.ipynb — Climate statistics
+Goal
+Implement core climate analysis steps such as seasonal means, anomalies, and exports suitable for GIS and further analysis.
+
+Key capabilities
+
+Subset tasmax to a WA bounding box using the same mask pattern as 04.
+
+Convert to Celsius for all downstream statistics.
+
+Compute seasonal means (DJF, MAM, JJA, SON) and an annual mean for a chosen year.
+
+Calculate seasonal anomalies relative to the annual mean and generate colour-coded anomaly maps.
+
+Prepare and export regridded products (NetCDF, and optionally COGs) for use in GIS and external tools.
+
+Generate a Perth point time series (or other locations) extracted from the gridded fields.
+
+Typical outputs
+
+Seasonal mean and anomaly fields over WA on a consistent grid.
+
+Location-specific time series for local analysis.
+
+Files ready for QGIS/ArcGIS or web-map publication.
+
+When to use
+
+For “basic climate products” like seasonal maps, anomalies, and simple indicators.
+
+When preparing data for decision-support tools and communication products.
+
+### 4.6 06_interactive_analysis.ipynb — Interactive exploration
+Goal
+Provide interactive controls (widgets) to explore variables, regions, and time periods in a dashboard-like manner within Jupyter.
+
+Typical capabilities
+
+Dropdowns or sliders for choosing variable, season, or scenario.
+
+Interactive plots that update in response to user selections.
+
+Quick comparison of regions or seasons without editing code.
+
+When to use
+
+For workshops, training, and stakeholder sessions where interactivity helps understanding.
+
+For exploratory analysis when you want rapid visual feedback.
+
+If widgets appear non-responsive, restart the kernel, ensure widget extensions are enabled, and re-run the notebook from the top.
+
+## 5. Recommended workflows
 Workflow A — Rapid visual inspection
+Use this when you want to see what a dataset “looks like” before investing in heavy processing.
 
-Open Data access
+Open 01_accessing_data.ipynb and load the target tasmax (or other variable) from NARCliM 2.0 via THREDDS.
 
-Load dataset
+Optionally subset in time to a few months.
 
-Open Plotting and visualisation
+Open 04_mapping_and_visualisation.ipynb.
 
-Generate spatial maps
+Use the WA mask, convert to Celsius, and plot one or more time steps.
 
-Workflow B — Regional climate summary
+Workflow B — WA NRM regional climate summary
+Use this when the end product is a table or set of plots per WA NRM region.
 
-Open Data access
+Access the relevant dataset in 01_accessing_data.ipynb.
 
-Open Spatial regridding
+If needed, regrid in 02_regridding.ipynb (for consistent grids across models).
 
-Open Regional analysis
+Build NRM region masks and regional time series in 03_wa_nrm_region.ipynb.
 
-Open Basic climate analysis
+Summarise and visualise results in 03 (time-series plots, summary tables) or in 05 for seasonal/statistical context.
 
-Workflow C — Interactive exploration
+Workflow C — Seasonal anomalies and GIS export
+Use this when preparing map products or GIS layers.
 
-Open Interactive analysis
+Open 01_accessing_data.ipynb and select a single year and scenario.
 
-Select variables and time range
+Optionally process/regrid in 02_regridding.ipynb.
 
-Explore patterns dynamically
+In 05_basic_climate_analysis.ipynb, subset to WA, convert to Celsius, compute seasonal means and anomalies, and export to NetCDF/COG.
 
-**8. Use of Binder**
+Import exported files into GIS or other visualisation tools as needed.
 
-Suitable use cases
+Workflow D — Interactive exploration
+Use this when you want a lightweight dashboard.
 
-Demonstrating workflows
+Prepare baseline datasets with 01–05.
 
-Exploring datasets
+Open 06_interactive_analysis.ipynb.
 
-Sharing reproducible examples
+Use widgets to choose region, variable, period, and inspect results dynamically.
 
-Running short analyses
+## 6. Data handling and persistence
+Raw NARCliM 2.0 data are not stored in this repository; they are accessed directly from NCI’s THREDDS server via OPeNDAP.
 
-Limitations
+Notebook outputs (plots, NetCDF, COGs) are generated on demand and can be saved locally or committed back to the repository.
 
-Not suitable for large datasets
+Hosted environments (Binder, etc.) do not retain state after shutdown; always download or commit outputs you need to keep.
 
-Not suitable for long-running regridding jobs
+## 7. Best practices
+To keep workflows efficient and robust:
 
-Sessions are temporary
+Inspect datasets (dimensions, variables, units) in 01 before running heavy computations.
 
-For computationally intensive tasks, local execution is recommended.
+Subset spatially (WA mask) and temporally (e.g. one year) before regridding or aggregating.
 
-**9. Data handling and persistence**
+Use shared helpers in climate_utils.py (e.g. kelvin_to_celsius, mask_wa_bbox, build_grid_points) to avoid duplicated logic.
 
-Binder environments do not retain data after shutdown.
-Any changes, outputs, or figures should be:
+Regrid before mapping if the grid is rotated or irregular and you need GIS compatibility (02, 05).
 
-Downloaded locally
+Prefer regional aggregation (03) when communicating with planners or managers.
 
-Or committed to the GitHub repository
+Ensure figures include variable name, units, time period, and scenario in titles or labels.
 
-**10. Best-practice guidance**
+Record key parameter choices (bounding boxes, seasons, regridding method) in markdown cells for reproducibility.
 
-Inspect datasets before analysis
-
-Subset spatially and temporally before heavy processing
-
-Apply regridding prior to mapping if grids are irregular
-
-Prefer regional aggregation when producing decision-relevant outputs
-
-Ensure figures include:
-
-variable names
-
-units
-
-time coverage
-
-Record parameter choices for reproducibility
-
-**11. Common operational issues**
-
+## 8. Common issues and fixes
 Blank maps
 
-Cause: Coordinate mismatch or projection issue
-Resolution:
+Check that the WA mask did not remove all cells (inspect mask.sum()).
 
-Confirm latitude and longitude variable names
+Confirm lat/lon variable names and that you are using the correct Cartopy transform (PlateCarree).
 
-Verify coordinate reference systems
+Very slow notebooks
 
-Ensure data is not empty after subsetting
+Reduce temporal extent (fewer years or months).
 
-Slow performance
+Apply the WA bounding box before regridding or aggregating.
 
-Cause: High spatial or temporal resolution
-Resolution:
+Run locally rather than via Binder for large jobs.
 
-Reduce time range
+Broken or non-responsive widgets (06)
 
-Apply spatial subsetting before regridding
+Restart kernel, run all cells.
 
-Non-responsive widgets
+Ensure ipywidgets/extensions are installed and enabled in your Jupyter environment.
 
-Cause: Widget extensions not initialised
-Resolution:
-Restart the kernel and re-run the notebook.
+## 9. Intended use
+This collection is intended for:
 
-**12. Intended use**
+Climate data exploration and “first pass” assessments over Western Australia.
 
-This toolkit supports:
+Regional climate summaries at WA NRM region scale.
 
-Climate data exploration
+Prototyping methods and workflows that may later be scaled up or automated.
 
-Regional climate assessment
+Generating reproducible examples for reports, training, and collaboration.
 
-Method prototyping
+The design emphasises:
 
-Development of future analytical pipelines
+Modularity — each notebook can be run on its own when appropriate inputs exist.
 
-It is designed to be:
+Transparency — all processing steps are visible, inspectable, and version-controlled.
 
-Modular — components can be used independently
-
-Transparent — workflows are visible and inspectable
-
-Extendable — new datasets, regions, and methods can be added with minimal restructuring
-
-**13. Closing statement**
-
-This toolkit provides a structured, reproducible approach to regional climate data analysis in a Jupyter-based environment.
-
-Whether used for:
-
-Exploratory analysis
-
-Regional climate summaries
-
-Visual communication
-
-Workflow prototyping
-
-it establishes a consistent foundation for climate-focused analytical work.
+Extensibility — new datasets, time periods, and regions can be added with minimal structural change.

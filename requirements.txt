@@ -4,6 +4,13 @@ pandas
 matplotlib
 cartopy
 geopandas
+shapely
+pyproj
 netCDF4
+dask
+rioxarray
+rasterio
+rio-cogeo
 ipywidgets
+plotly
 xesmf

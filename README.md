@@ -39,40 +39,15 @@ Recommended for large datasets and computationally intensive workflows.
 The repository is organised by **function**, not by dependency.  
 Notebooks can be run independently.
 
-Typical workflow order:
-
-1. Overview  
-2. Data access  
-3. Spatial preparation  
-4. Regional aggregation  
-5. Visualisation  
-6. Climate summaries  
-7. Interactive exploration  
-
----
-
 ## Notebook overview
 
-### Overview  
-Provides context, scope, and workflow orientation.
-
-### Data access  
-Implements standardised access to NARCliM climate data via THREDDS / OPeNDAP services.
-
-### Spatial regridding  
-Prepares datasets for consistent spatial analysis and mapping.
-
-### Regional analysis (WA NRM regions)  
-Aggregates gridded climate data to regional boundaries for management-scale summaries.
-
-### Plotting and visualisation  
-Produces spatial maps and time-series figures using consistent projection handling.
-
-### Basic climate analysis  
-Implements core climate statistics and summary routines.
-
-### Interactive analysis  
-Adds dynamic controls for exploratory analysis within Jupyter.
+- **00_Local_Environment_Setup.ipynb** – Step‑by‑step local environment setup using Miniforge + mamba.
+- **01_accessing_data.ipynb** – Standardised access to NARCliM climate data via THREDDS / OPeNDAP.
+- **02_regridding.ipynb** – Spatial regridding to regular latitude–longitude grids.
+- **03_wa_nrm_region.ipynb** – Regional analysis using WA NRM boundaries.
+- **04_mapping_and_visualisation.ipynb** – Spatial maps and time‑series visualisation.
+- **05_basic_climate_analysis.ipynb** – Core climate statistics and summary routines.
+- **06_interactive_analysis.ipynb** – Interactive, widget‑based exploratory analysis.
 
 ---
 
@@ -95,17 +70,17 @@ Adds dynamic controls for exploratory analysis within Jupyter.
 git clone <repository-url>
 cd <repository-folder>
 ```
-###Create and activate a conda environment
+### Create and activate a conda environment
 
 conda create -n climate-toolkit python=3.10
 conda activate climate-toolkit
 
-###Install dependencies
+### Install dependencies
 
 pip install -r requirements.txt
 
 
-###Launch JupyterLab
+### Launch JupyterLab
 jupyter lab
 
 
@@ -129,4 +104,4 @@ https://www.wa.gov.au/terms-of-use
 Where datasets are sourced from Data WA or DWER, use of those datasets is subject to the applicable data licence or acceptance agreement, including the DWER Active Acceptance Licence Agreement:
 https://catalogue.data.wa.gov.au/dataset/dwer-active-acceptance-licence-agreement
 
-Users are responsible for ensuring their use of data and outputs complies with all applicable licence conditions and legal requirements. Any interpretations, conclusions, or errors arising from the use of this repository remain the responsibility of the user.
+Users are responsible for ensuring their use of data and outputs complies with all applicable licence conditions and legal requirements. Any interpretations, conclusions, or errors arising from the use of this repository remain the responsibility of the users.
