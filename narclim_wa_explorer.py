@@ -15,6 +15,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 import re
+import json
 import requests
 import xml.etree.ElementTree as ET
 from urllib.parse import urljoin
@@ -22,20 +23,21 @@ from urllib.parse import urljoin
 import numpy as np
 import pandas as pd
 import xarray as xr
-import plotly.graph_objects as go
+import plotly.express as px
 import matplotlib.pyplot as plt
 import ipywidgets as widgets
+import geopandas as gpd
 
 from climate_utils import kelvin_to_celsius  # expects kelvin_to_celsius(da) -> °C
-
 
 # =============================================================================
 # GLOBALS
 # =============================================================================
 
 ds = None          # current xarray.Dataset
-df_stats = None    # flattened stats table for map
+df_stats = None    # GeoDataFrame with polygons + mean
 var_names = None   # list of variables discovered
+gdf_regions = None # AACC regions GeoDataFrame (WA only)
 
 # These will be defined in build_wa_explorer_ui()
 variable_dd = None
@@ -45,7 +47,6 @@ output = None
 region_sel = None
 ts_btn = None
 ui = None
-
 
 # =============================================================================
 # THREDDS HELPERS
@@ -152,7 +153,6 @@ def get_available_years_for_variable(variable: str):
 
     return sorted(years)
 
-
 # =============================================================================
 # DATASET CONFIG
 # =============================================================================
@@ -174,23 +174,55 @@ WA_BOUNDS = {
     "lat": (-36, -12),
 }
 
-REGIONS_DF = pd.DataFrame(
-    {
-        "region": [
-            "Perth Metro",
-            "South West",
-            "Wheatbelt",
-            "Great Southern",
-            "Mid West",
-            "Goldfields",
-            "Pilbara",
-            "Kimberley",
-        ],
-        "lat": [-31.95, -34.00, -31.50, -35.00, -28.80, -30.75, -22.50, -16.50],
-        "lon": [115.86, 115.20, 117.00, 117.80, 114.60, 121.50, 118.00, 125.00],
-    }
-)
+# Path to your AACC regions shapefile (GDA94, EPSG:4283)
+SHAPEFILE_PATH = "aacc_shp/AACC_Data_Warehouse_Regions_simplify5.shp"
 
+# Use shapefile Region_Nam values directly as region labels
+UI_REGIONS = [
+    "East Kimberley",
+    "West Kimberley",
+    "Goldfields-Esperance",
+    "Midwest-Gascoyne",
+    "Perth",
+    "Southern",
+    "Pilbara",
+    "Wheatbelt",
+]
+
+# =============================================================================
+# REGION SHAPEFILE LOADING
+# =============================================================================
+
+def load_aacc_regions():
+    """Load AACC regions shapefile and prepare for joins."""
+    global gdf_regions
+
+    if gdf_regions is not None:
+        return gdf_regions
+
+    print(f"🗺️ Loading AACC regions from: {SHAPEFILE_PATH}")
+    gdf = gpd.read_file(SHAPEFILE_PATH)
+
+    # Fix CRS and geometries
+    if gdf.crs is None:
+        gdf = gdf.set_crs(epsg=4283)
+    elif gdf.crs.to_epsg() != 4283:
+        gdf = gdf.to_crs(epsg=4283)
+    gdf = gdf.to_crs(epsg=4326)
+    gdf["geometry"] = gdf["geometry"].buffer(0)
+
+    if "Region_Nam" not in gdf.columns:
+        raise KeyError("Expected 'Region_Nam' column in AACC shapefile")
+
+    # Use Region_Nam directly
+    gdf["ui_region"] = gdf["Region_Nam"]
+
+    # Keep only the regions we want in the UI
+    gdf = gdf[gdf["ui_region"].isin(UI_REGIONS)].copy()
+
+    print("✅ Regions loaded:", sorted(gdf["ui_region"].unique()))
+    gdf_regions = gdf
+    return gdf_regions
 
 # =============================================================================
 # CORE DATA FUNCTIONS
@@ -257,195 +289,183 @@ def open_selected_dataset(variable: str, year: str):
     print(f"   Units for {variable}: {ds[variable].attrs.get('units', 'unknown')}")
     return ds
 
-
 def compute_stats(variable: str):
     """
-    Compute mean / min / max over time for selected variable
-    and flatten into a DataFrame for plotting.
+    Compute mean over time for selected variable
+    aggregated by AACC polygon regions; store in df_stats.
     """
     global df_stats
 
     if ds is None:
         raise RuntimeError("Dataset not loaded")
 
+    gdf = load_aacc_regions()
     da = ds[variable]
+
     if da.sizes.get("time", 0) == 0:
         raise ValueError("Dataset has no time steps; check year selection.")
 
-    print("🔢 Computing spatial statistics...")
-    data = da.values  # (time, y, x)
+    print("🔢 Computing regional mean using AACC polygons...")
 
-    mean_2d = np.nanmean(data, axis=0)
-    min_2d = np.nanmin(data, axis=0)
-    max_2d = np.nanmax(data, axis=0)
-
-    lats = ds["lat"].values
-    lons = ds["lon"].values
-
-    mask = ~np.isnan(mean_2d)
-    rlat_idx, rlon_idx = np.where(mask)
-    if lats.ndim == 2:
-        lat_flat = lats[rlat_idx, rlon_idx]
-    else:
-        lat_flat = lats[rlat_idx]
-    if lons.ndim == 2:
-        lon_flat = lons[rlat_idx, rlon_idx]
-    else:
-        lon_flat = lons[rlon_idx]
-
-    df_stats = pd.DataFrame(
-        {
-            "rlat": rlat_idx.astype(float),
-            "rlon": rlon_idx.astype(float),
-            "lat": lat_flat,
-            "lon": lon_flat,
-            "mean": mean_2d[mask],
-            "min": min_2d[mask],
-            "max": max_2d[mask],
-            "region": "",
-        }
-    )
-
-    pts_lat = df_stats["lat"].values
-    pts_lon = df_stats["lon"].values
-    reg_lat = REGIONS_DF["lat"].values
-    reg_lon = REGIONS_DF["lon"].values
-
-    dist_sq = (pts_lat[:, None] - reg_lat[None, :]) ** 2 + (
-        pts_lon[:, None] - reg_lon[None, :]
-    ) ** 2
-    df_stats["region"] = REGIONS_DF["region"].values[dist_sq.argmin(axis=1)]
-
-    print(
-        f"✅ Stats ready: {len(df_stats):,} points across "
-        f"{df_stats['region'].nunique()} WA regions"
-    )
-
-
-def extract_ts(lat0: float, lon0: float, variable: str):
-    """
-    Extract time series at nearest gridpoint to given lat/lon.
-    Works with 1D or 2D lat/lon coordinates.
-    """
+    # Build point grid of model cells (center of each cell)
     lat = ds["lat"]
     lon = ds["lon"]
-
     if lat.ndim == 1 and lon.ndim == 1:
-        return ds[variable].sel(lat=lat0, lon=lon0, method="nearest")
+        lon2d, lat2d = np.meshgrid(lon.values, lat.values)
+    else:
+        lat2d = lat.values
+        lon2d = lon.values
 
-    dist = (lat - lat0) ** 2 + (lon - lon0) ** 2
-    iy, ix = np.unravel_index(dist.argmin(), dist.shape)
-    return ds[variable].isel(rlat=iy, rlon=ix)
+    mask_any = np.any(~np.isnan(da.values), axis=0)
+    iy, ix = np.where(mask_any)
 
+    points = gpd.GeoDataFrame(
+        {
+            "rlat": iy.astype(int),
+            "rlon": ix.astype(int),
+            "lat": lat2d[iy, ix],
+            "lon": lon2d[iy, ix],
+        },
+        geometry=gpd.points_from_xy(lon2d[iy, ix], lat2d[iy, ix]),
+        crs="EPSG:4326",
+    )
+
+    # Spatial join: assign each grid point to a region polygon
+    points_regions = gpd.sjoin(
+        points, gdf[["ui_region", "geometry"]],
+        how="inner", predicate="within"
+    )
+    if points_regions.empty:
+        raise RuntimeError("No grid points found inside AACC polygons – check bounds/CRS.")
+
+    # Time mean per cell
+    data = da.values  # (time, y, x)
+    mean_2d = np.nanmean(data, axis=0)
+
+    points_regions["mean_cell"] = mean_2d[points_regions["rlat"], points_regions["rlon"]]
+
+    # Aggregate over cells per region (mean only)
+    agg = (
+        points_regions.groupby("ui_region")[["mean_cell"]]
+        .mean()
+        .reset_index()
+        .rename(columns={"ui_region": "region", "mean_cell": "mean"})
+    )
+
+    # Merge back to polygons (GeoDataFrame)
+    gdf_poly = gdf.copy().rename(columns={"ui_region": "region"})
+    df_stats = gdf_poly.merge(agg, on="region", how="inner")
+
+    n_regions = df_stats["region"].nunique()
+    print(
+        f"✅ Stats ready for {n_regions} regions: "
+        f"{', '.join(sorted(df_stats['region'].unique()))}"
+    )
+
+def extract_ts_for_region(region_name: str, variable: str):
+    """
+    Extract time series as region-average over polygon for given region.
+    """
+    if ds is None:
+        raise RuntimeError("Dataset not loaded")
+
+    gdf = load_aacc_regions()
+    region_poly = gdf.loc[gdf["ui_region"] == region_name]
+    if region_poly.empty:
+        raise ValueError(f"No polygon found for region '{region_name}'")
+
+    lat = ds["lat"]
+    lon = ds["lon"]
+    if lat.ndim == 1 and lon.ndim == 1:
+        lon2d, lat2d = np.meshgrid(lon.values, lat.values)
+    else:
+        lat2d = lat.values
+        lon2d = lon.values
+
+    points = gpd.GeoDataFrame(
+        {
+            "rlat": np.arange(lat2d.shape[0]).repeat(lat2d.shape[1]),
+            "rlon": np.tile(np.arange(lat2d.shape[1]), lat2d.shape[0]),
+            "lat": lat2d.ravel(),
+            "lon": lon2d.ravel(),
+        },
+        geometry=gpd.points_from_xy(lon2d.ravel(), lat2d.ravel()),
+        crs="EPSG:4326",
+    )
+
+    inside = gpd.sjoin(points, region_poly[["geometry"]],
+                       how="inner", predicate="within")
+    if inside.empty:
+        raise RuntimeError(f"No model grid cells inside polygon for region '{region_name}'")
+
+    da = ds[variable]
+    ts_vals = []
+    for t_idx in range(da.sizes["time"]):
+        slice_2d = da.isel(time=t_idx).values
+        vals = slice_2d[inside["rlat"], inside["rlon"]]
+        ts_vals.append(np.nanmean(vals))
+
+    ts = xr.DataArray(
+        data=np.array(ts_vals),
+        coords={"time": ds["time"].values},
+        dims=["time"],
+        name=f"{variable}_region_{region_name}",
+        attrs=da.attrs,
+    )
+    return ts
 
 # =============================================================================
 # PLOTTING FUNCTIONS
 # =============================================================================
 
+def _df_stats_to_geojson():
+    """Convert df_stats (GeoDataFrame) to GeoJSON feature collection for Plotly."""
+    if df_stats is None:
+        raise RuntimeError("Stats not computed")
+    gdf = df_stats.set_geometry("geometry")
+    geojson = json.loads(gdf.to_json())
+    return geojson
+
 def plot_map(variable: str):
-    """Interactive map: toggle mean/min/max."""
+    """
+    Choropleth map: show mean over AACC polygons (WA-only).
+    Hover shows region and mean value.
+    """
     if df_stats is None:
         raise RuntimeError("Stats not computed")
 
     units = ds[variable].attrs.get("units", "units")
-    df_plot = df_stats.copy()
-    hover_texts = [
-        f"{row.region}<br>Lon: {row.lon:.2f}°E<br>Lat: {row.lat:.2f}°S"
-        for _, row in df_plot.iterrows()
-    ]
+    geojson = _df_stats_to_geojson()
 
-    fig = go.Figure()
+    fig = px.choropleth(
+        df_stats,
+        geojson=geojson,
+        locations="region",
+        featureidkey="properties.region",
+        color="mean",
+        color_continuous_scale="Viridis",
+        hover_name="region",
+        hover_data={"mean": ":.2e"},
+    )
 
-    for i, (stat, visible) in enumerate(
-        [("mean", True), ("min", False), ("max", False)]
-    ):
-        fig.add_trace(
-            go.Scattergl(
-                x=df_plot["lon"],
-                y=df_plot["lat"],
-                text=hover_texts,
-                customdata=df_plot[stat],
-                hovertemplate=(
-                    "%{text}<br>"
-                    + f"{stat.title()}: "
-                    + "%{customdata:.2f} "
-                    + units
-                    + "<extra></extra>"
-                ),
-                mode="markers",
-                visible=visible,
-                marker=dict(
-                    size=6,
-                    opacity=0.8,
-                    color=df_plot[stat],
-                    colorscale="Viridis",
-                    colorbar=dict(
-                        title=f"{stat.title()} ({units})", thickness=20
-                    )
-                    if i == 0
-                    else None,
-                ),
-                name=stat.title(),
-                showlegend=True,
-            )
-        )
-
+    fig.update_geos(
+        fitbounds="locations",
+        visible=False,
+        bgcolor="rgba(0,0,0,0)",
+    )
     fig.update_layout(
-        title=f"{variable.upper()} over Western Australia ({year_slider.value})",
-        xaxis=dict(title="Longitude (°E)", range=WA_BOUNDS["lon"]),
-        yaxis=dict(
-            title="Latitude (°S)",
-            range=WA_BOUNDS["lat"],
-            scaleanchor="x",
-            scaleratio=1.1,
-        ),
+        title=f"{variable.upper()} mean over Western Australia ({year_slider.value})",
+        coloraxis_colorbar=dict(title=f"Mean ({units})"),
         height=520,
         margin=dict(l=20, r=20, t=60, b=40),
-        hovermode="closest",
-        hoverdistance=5,          # tight hover; label only near points
-        clickmode="event+select",
-        plot_bgcolor="rgba(0,0,0,0)",
-        updatemenus=[
-            dict(
-                buttons=[
-                    dict(
-                        label="Mean",
-                        method="update",
-                        args=[
-                            {"visible": [True, False, False]},
-                            {"title": f"{variable.upper()} Mean over WA ({year_slider.value})"},
-                        ],
-                    ),
-                    dict(
-                        label="Min",
-                        method="update",
-                        args=[
-                            {"visible": [False, True, False]},
-                            {"title": f"{variable.upper()} Min over WA ({year_slider.value})"},
-                        ],
-                    ),
-                    dict(
-                        label="Max",
-                        method="update",
-                        args=[
-                            {"visible": [False, False, True]},
-                            {"title": f"{variable.upper()} Max over WA ({year_slider.value})"},
-                        ],
-                    ),
-                ],
-                direction="down",
-                x=0.01,
-                y=1.12,
-                showactive=True,
-            )
-        ],
+        paper_bgcolor="#dfe4ea",
+        plot_bgcolor="#dfe4ea",
     )
 
     fig.show()
 
-
 def plot_timeseries(b=None):
-    """Plot time series for currently selected regions."""
+    """Plot region-mean time series for currently selected regions."""
     if ds is None or df_stats is None:
         print("❌ Please run the analysis first (map) before plotting time series.")
         return
@@ -461,9 +481,7 @@ def plot_timeseries(b=None):
     fig, ax = plt.subplots(figsize=(12, 5))
 
     for region_name in selected_regions:
-        row = REGIONS_DF.loc[REGIONS_DF["region"] == region_name].iloc[0]
-        lat0, lon0 = row["lat"], row["lon"]
-        ts = extract_ts(lat0, lon0, variable)
+        ts = extract_ts_for_region(region_name, variable)
         ts.plot(ax=ax, label=region_name, linewidth=2)
 
     ax.set_title(
@@ -476,7 +494,6 @@ def plot_timeseries(b=None):
     ax.legend(ncol=2, fontsize=10)
     plt.tight_layout()
     plt.show()
-
 
 # =============================================================================
 # UI BUILDER
@@ -502,7 +519,6 @@ def _scan_variables():
     var_names = sorted([name for name, _ in list_subfolders_from_catalog(var_cat)])
     print(f"✅ Found {len(var_names)} variables. Example: {var_names[:5]}")
 
-
 def build_wa_explorer_ui():
     """
     Build and return the WA climate explorer UI widget.
@@ -514,12 +530,13 @@ def build_wa_explorer_ui():
     """
     global variable_dd, year_slider, run_btn, output, region_sel, ts_btn, ui
 
+    # Ensure regions are loaded once
+    load_aacc_regions()
+
     if var_names is None:
         _scan_variables()
 
-    # -------------------------
     # Widgets
-    # -------------------------
     variable_dd = widgets.Dropdown(
         options=var_names,
         value="tasmax" if "tasmax" in var_names else var_names[0],
@@ -543,8 +560,8 @@ def build_wa_explorer_ui():
     output = widgets.Output(layout=widgets.Layout(height="550px"))
 
     region_sel = widgets.SelectMultiple(
-        options=REGIONS_DF["region"].tolist(),
-        value=["Perth Metro", "South West"],
+        options=UI_REGIONS,
+        value=["Perth", "Southern"],
         description="WA regions:",
         rows=8,
         layout=widgets.Layout(width="260px"),
@@ -556,9 +573,7 @@ def build_wa_explorer_ui():
         layout=widgets.Layout(width="140px"),
     )
 
-    # -------------------------
     # Widget-dependent helpers
-    # -------------------------
     def update_year_slider(*args):
         var = variable_dd.value
         years = get_available_years_for_variable(var)
@@ -586,9 +601,8 @@ def build_wa_explorer_ui():
                 plot_map(variable_dd.value)
                 print(
                     "\n✅ Map ready.\n"
-                    "1) Hover points for region info\n"
-                    "2) Toggle Mean/Min/Max in the dropdown\n"
-                    "3) Select regions on the left and click TIMESERIES"
+                    "1) Hover regions for mean values\n"
+                    "2) Select regions on the left and click TIMESERIES"
                 )
             except Exception as exc:
                 print(f"❌ Error during analysis: {exc}")
@@ -604,9 +618,7 @@ def build_wa_explorer_ui():
     run_btn.on_click(on_run)
     ts_btn.on_click(on_timeseries)
 
-    # -------------------------
     # UI layout
-    # -------------------------
     ui = widgets.VBox(
         [
             widgets.HTML("<h3>NARCliM 2.0 WA Climate Explorer</h3>"),
