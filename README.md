@@ -99,7 +99,4 @@ This repository is provided for demonstration, exploratory analysis, and learnin
 Use of any Government of Western Australia websites, services, or datasets referenced in this repository is subject to the relevant official terms and conditions, including the WA.gov.au Terms of Use:
 https://www.wa.gov.au/terms-of-use
 
-Where datasets are sourced from Data WA or DWER, use of those datasets is subject to the applicable data licence or acceptance agreement, including the DWER Active Acceptance Licence Agreement:
-https://catalogue.data.wa.gov.au/dataset/dwer-active-acceptance-licence-agreement
-
 Users are responsible for ensuring their use of data and outputs complies with all applicable licence conditions and legal requirements. Any interpretations, conclusions, or errors arising from the use of this repository remain the responsibility of the users.
