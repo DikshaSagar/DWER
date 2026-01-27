@@ -7,6 +7,11 @@ A modular Jupyter-based workflow for accessing, analysing, and visualising regio
 This repository is designed for use both **online via Binder** and **locally** for extended analysis.
 
 ---
+## Contributors
+
+[![Contributors](https://contrib.rocks/image?repo=DikshaSagar/DWER)](https://github.com/DikshaSagar/DWER/graphs/contributors)
+
+---
 
 ## Overview
 
