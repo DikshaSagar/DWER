@@ -280,9 +280,14 @@ def open_selected_dataset(variable: str, year: str):
         raise ValueError(
             f"No data available in {name} for year {year} within WA bounds."
         )
-
-    if variable.startswith("tas"):
-        ds_new[variable] = kelvin_to_celsius(ds_new[variable])
+    for v in ds_new.data_vars:
+        units = ds_new[v].attrs.get("units", "").lower()
+        if units in ("k", "kelvin", "degk"):
+            ds_new[v] = kelvin_to_celsius(ds_new[v])
+            ds_new[v].attrs["units"] = "°C"
+            
+    #if variable.startswith("tas"):
+    #ds_new[variable] = kelvin_to_celsius(ds_new[variable])
 
     ds = ds_new
     print(f"✅ Loaded dataset dims: {dict(ds.dims)}")
@@ -445,7 +450,7 @@ def plot_map(variable: str):
         color="mean",
         color_continuous_scale="Viridis",
         hover_name="region",
-        hover_data={"mean": ":.2e"},
+        hover_data={},
     )
 
     fig.update_geos(
