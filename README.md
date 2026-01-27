@@ -7,11 +7,6 @@ A modular Jupyter-based workflow for accessing, analysing, and visualising regio
 This repository is designed for use both **online via Binder** and **locally** for extended analysis.
 
 ---
-## Contributors
-
-[![Contributors](https://contrib.rocks/image?repo=DikshaSagar/DWER)](https://github.com/DikshaSagar/DWER/graphs/contributors)
-
----
 
 ## Overview
 
@@ -105,3 +100,9 @@ Use of any Government of Western Australia websites, services, or datasets refer
 https://www.wa.gov.au/terms-of-use
 
 Users are responsible for ensuring their use of data and outputs complies with all applicable licence conditions and legal requirements. Any interpretations, conclusions, or errors arising from the use of this repository remain the responsibility of the users.
+
+## Contributors
+
+[![Contributors](https://contrib.rocks/image?repo=DikshaSagar/DWER)](https://github.com/DikshaSagar/DWER/graphs/contributors)
+
+---
