@@ -86,6 +86,12 @@ jupyter lab
 
 ---
 
+## Contributors
+
+[![Contributors](https://contrib.rocks/image?repo=DikshaSagar/DWER)](https://github.com/DikshaSagar/DWER/graphs/contributors)
+
+---
+
 ## Acknowledgement
 
 This repository contains example workflows, analysis notebooks, and supporting utilities developed as part of a Climate Science Initiative (CSI) project. The material has been informed by established best practices in climate data analysis and by feedback from researchers and practitioners working with regional climate projection datasets.
@@ -101,8 +107,3 @@ https://www.wa.gov.au/terms-of-use
 
 Users are responsible for ensuring their use of data and outputs complies with all applicable licence conditions and legal requirements. Any interpretations, conclusions, or errors arising from the use of this repository remain the responsibility of the users.
 
-## Contributors
-
-[![Contributors](https://contrib.rocks/image?repo=DikshaSagar/DWER)](https://github.com/DikshaSagar/DWER/graphs/contributors)
-
----
