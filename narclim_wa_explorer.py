@@ -190,6 +190,34 @@ UI_REGIONS = [
 ]
 
 # =============================================================================
+# UNIT NORMALISATION
+# =============================================================================
+
+def standardise_units(da: xr.DataArray, varname: str) -> xr.DataArray:
+    """
+    Make units and magnitudes look sane for plotting.
+
+    - temps:  K -> °C
+    - precip / runoff flux: kg m-2 s-1 -> mm/day
+    """
+    units = da.attrs.get("units", "").lower()
+
+    # Temperatures (safety net; open_selected_dataset already handles most)
+    if varname.lower() in ("tas", "tasmax", "tasmin") and units in ("k", "kelvin", "degk"):
+        da = kelvin_to_celsius(da)
+        da.attrs["units"] = "°C"
+        return da
+
+    # Total precipitation and related fluxes
+    flux_vars = {"pr", "prc", "prhmax", "prsn", "mrro", "mrros", "snm"}
+    if varname in flux_vars and "kg" in units and "m-2" in units and "s-1" in units:
+        da = da * 86400.0  # kg m-2 s-1 -> mm/day
+        da.attrs["units"] = "mm/day"
+        return da
+
+    return da
+
+# =============================================================================
 # REGION SHAPEFILE LOADING
 # =============================================================================
 
@@ -231,7 +259,7 @@ def load_aacc_regions():
 def open_selected_dataset(variable: str, year: str):
     """
     Open NARCliM dataset for a single year, subset to WA,
-    convert temps to °C, and load.
+    standardise units, and load.
     """
     global ds
 
@@ -263,7 +291,6 @@ def open_selected_dataset(variable: str, year: str):
     try:
         ds_new = xr.open_dataset(opendap_url, engine="pydap")
     except ValueError as exc:
-        # xarray raises ValueError when the engine is not recognized
         if "unrecognized engine 'pydap'" in str(exc):
             ds_new = xr.open_dataset(opendap_url, engine="netcdf4")
         else:
@@ -280,14 +307,15 @@ def open_selected_dataset(variable: str, year: str):
         raise ValueError(
             f"No data available in {name} for year {year} within WA bounds."
         )
+
+    # Standardise units for all data vars
     for v in ds_new.data_vars:
         units = ds_new[v].attrs.get("units", "").lower()
         if units in ("k", "kelvin", "degk"):
             ds_new[v] = kelvin_to_celsius(ds_new[v])
             ds_new[v].attrs["units"] = "°C"
-            
-    #if variable.startswith("tas"):
-    #ds_new[variable] = kelvin_to_celsius(ds_new[variable])
+
+        ds_new[v] = standardise_units(ds_new[v], v)
 
     ds = ds_new
     print(f"✅ Loaded dataset dims: {dict(ds.dims)}")
@@ -298,6 +326,7 @@ def compute_stats(variable: str):
     """
     Compute mean over time for selected variable
     aggregated by AACC polygon regions; store in df_stats.
+    (Annual mean over the loaded year.)
     """
     global df_stats
 
@@ -310,7 +339,10 @@ def compute_stats(variable: str):
     if da.sizes.get("time", 0) == 0:
         raise ValueError("Dataset has no time steps; check year selection.")
 
-    print("🔢 Computing regional mean using AACC polygons...")
+    print("🔢 Computing regional annual mean using AACC polygons...")
+
+    # Annual mean per grid cell
+    da_ann = da.mean(dim="time", skipna=True)
 
     # Build point grid of model cells (center of each cell)
     lat = ds["lat"]
@@ -321,7 +353,7 @@ def compute_stats(variable: str):
         lat2d = lat.values
         lon2d = lon.values
 
-    mask_any = np.any(~np.isnan(da.values), axis=0)
+    mask_any = ~np.isnan(da_ann.values)
     iy, ix = np.where(mask_any)
 
     points = gpd.GeoDataFrame(
@@ -343,10 +375,8 @@ def compute_stats(variable: str):
     if points_regions.empty:
         raise RuntimeError("No grid points found inside AACC polygons – check bounds/CRS.")
 
-    # Time mean per cell
-    data = da.values  # (time, y, x)
-    mean_2d = np.nanmean(data, axis=0)
-
+    # Annual mean value for each cell already in da_ann
+    mean_2d = da_ann.values
     points_regions["mean_cell"] = mean_2d[points_regions["rlat"], points_regions["rlon"]]
 
     # Aggregate over cells per region (mean only)
@@ -370,6 +400,7 @@ def compute_stats(variable: str):
 def extract_ts_for_region(region_name: str, variable: str):
     """
     Extract time series as region-average over polygon for given region.
+    (Uses monthly values; you still see intra-annual structure.)
     """
     if ds is None:
         raise RuntimeError("Dataset not loaded")
@@ -424,47 +455,127 @@ def extract_ts_for_region(region_name: str, variable: str):
 # =============================================================================
 
 def _df_stats_to_geojson():
-    """Convert df_stats (GeoDataFrame) to GeoJSON feature collection for Plotly."""
+    """Convert df_stats (GeoDataFrame) to GeoJSON feature collection."""
     if df_stats is None:
         raise RuntimeError("Stats not computed")
     gdf = df_stats.set_geometry("geometry")
     geojson = json.loads(gdf.to_json())
     return geojson
 
-def plot_map(variable: str):
+def _build_native_grid_points():
     """
-    Choropleth map: show mean over AACC polygons (WA-only).
-    Hover shows region and mean value.
+    Build GeoDataFrame of native grid points (one row per cell)
+    with rlat, rlon, lat, lon.
     """
-    if df_stats is None:
-        raise RuntimeError("Stats not computed")
+    if ds is None:
+        raise RuntimeError("Dataset not loaded")
 
-    units = ds[variable].attrs.get("units", "units")
-    geojson = _df_stats_to_geojson()
+    lat = ds["lat"]
+    lon = ds["lon"]
 
-    fig = px.choropleth(
-        df_stats,
-        geojson=geojson,
-        locations="region",
-        featureidkey="properties.region",
-        color="mean",
-        color_continuous_scale="Viridis",
-        hover_name="region",
-        hover_data={},
+    if lat.ndim == 1 and lon.ndim == 1:
+        lon2d, lat2d = np.meshgrid(lon.values, lat.values)
+    else:
+        lat2d = lat.values
+        lon2d = lon.values
+
+    rlat_idx, rlon_idx = np.indices(lat2d.shape)
+
+    points = gpd.GeoDataFrame(
+        {
+            "rlat": rlat_idx.ravel(),
+            "rlon": rlon_idx.ravel(),
+            "lat": lat2d.ravel(),
+            "lon": lon2d.ravel(),
+        },
+        geometry=gpd.points_from_xy(lon2d.ravel(), lat2d.ravel()),
+        crs="EPSG:4326",
+    )
+    return points
+
+def plot_native_grid_map(variable: str):
+    """
+    Native-grid map: plot annual mean of the variable on individual grid cells
+    with AACC region boundaries overlaid (no area-averaging in the map).
+    """
+    if ds is None:
+        raise RuntimeError("Dataset not loaded")
+
+    gdf = load_aacc_regions()
+    da = ds[variable]
+
+    if da.sizes.get("time", 0) == 0:
+        raise ValueError("Dataset has no time steps; check year selection.")
+
+    # Annual mean over all time steps in the loaded year
+    da_ann = da.mean(dim="time", skipna=True)
+    da_ann = standardise_units(da_ann, variable)
+    units_out = da_ann.attrs.get("units", "units")
+
+    # Build grid points and join to polygons (for hover labels, but not averaging)
+    points = _build_native_grid_points()
+
+    points_regions = gpd.sjoin(
+        points,
+        gdf[["ui_region", "geometry"]],
+        how="inner",
+        predicate="within",
     )
 
-    fig.update_geos(
-        fitbounds="locations",
-        visible=False,
-        bgcolor="rgba(0,0,0,0)",
+    if points_regions.empty:
+        raise RuntimeError("No grid points found inside AACC polygons – check bounds/CRS.")
+
+    vals = da_ann.values
+    points_regions["value"] = vals[
+        points_regions["rlat"].values,
+        points_regions["rlon"].values
+    ]
+
+    # Drop NaN (ocean etc.)
+    points_regions = points_regions[~np.isnan(points_regions["value"])].copy()
+
+    # Nicely formatted value label for hover
+    points_regions["value_label"] = points_regions["value"].map(
+        lambda v: f"{v:.2f}"
+    ) + f" {units_out}"
+
+    geojson_regions = json.loads(gdf.to_json())
+
+    fig = px.scatter_mapbox(
+        points_regions,
+        lat=points_regions.geometry.y,
+        lon=points_regions.geometry.x,
+        color="value",
+        color_continuous_scale="Inferno",
+        hover_name="ui_region",
+        hover_data={
+            "value": False,
+            "value_label": True,
+        },
+        zoom=4,
+        center={"lat": -25, "lon": 122},
+        opacity=0.7,
+        height=650,
     )
+
     fig.update_layout(
-        title=f"{variable.upper()} mean over Western Australia ({year_slider.value})",
-        coloraxis_colorbar=dict(title=f"Mean ({units})"),
-        height=520,
-        margin=dict(l=20, r=20, t=60, b=40),
-        paper_bgcolor="#dfe4ea",
-        plot_bgcolor="#dfe4ea",
+        mapbox_style="carto-positron",
+        mapbox_layers=[
+            {
+                "source": geojson_regions,
+                "type": "line",
+                "color": "black",
+                "line": {"width": 2},
+            }
+        ],
+        title=(
+            f"{variable.upper()} (annual mean {year_slider.value}) – "
+            "Native grid with AACC boundaries"
+        ),
+        margin={"r": 0, "t": 60, "l": 0, "b": 0},
+        coloraxis_colorbar=dict(
+            title=f"{variable} ({units_out})"
+        ),
     )
 
     fig.show()
@@ -490,7 +601,7 @@ def plot_timeseries(b=None):
         ts.plot(ax=ax, label=region_name, linewidth=2)
 
     ax.set_title(
-        f"{variable.upper()} time series - selected WA regions ({year_slider.value})",
+        f"{variable.upper()} monthly time series - selected WA regions ({year_slider.value})",
         fontsize=13,
         fontweight="bold",
     )
@@ -562,7 +673,7 @@ def build_wa_explorer_ui():
         layout=widgets.Layout(width="140px"),
     )
 
-    output = widgets.Output(layout=widgets.Layout(height="550px"))
+    output = widgets.Output(layout=widgets.Layout(height="650px"))
 
     region_sel = widgets.SelectMultiple(
         options=UI_REGIONS,
@@ -603,10 +714,10 @@ def build_wa_explorer_ui():
             try:
                 open_selected_dataset(variable_dd.value, year)
                 compute_stats(variable_dd.value)
-                plot_map(variable_dd.value)
+                plot_native_grid_map(variable_dd.value)
                 print(
                     "\n✅ Map ready.\n"
-                    "1) Hover regions for mean values\n"
+                    "1) Hover grid cells for annual-mean values\n"
                     "2) Select regions on the left and click TIMESERIES"
                 )
             except Exception as exc:
